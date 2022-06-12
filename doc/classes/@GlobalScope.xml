@@ -18,6 +18,9 @@
 		<member name="AudioServer" type="AudioServer" setter="" getter="">
 			The [AudioServer] singleton.
 		</member>
+		<member name="BulletServerRelay" type="BulletServerRelay" setter="" getter="">
+      The [BulletServerRelay] singleton.
+		</member>
 		<member name="CameraServer" type="CameraServer" setter="" getter="">
 			The [CameraServer] singleton.
 		</member>
