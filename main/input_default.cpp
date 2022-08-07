@@ -748,7 +748,7 @@ void InputDefault::release_pressed_events() {
 
 InputDefault::InputDefault() {
 	use_input_buffering = false;
-	use_accumulated_input = false;
+	use_accumulated_input = true;
 	mouse_button_mask = 0;
 	emulate_touch_from_mouse = false;
 	emulate_mouse_from_touch = false;
@@ -1050,7 +1050,7 @@ InputDefault::JoyEvent InputDefault::_get_mapped_axis_event(const JoyDeviceMappi
 	return event;
 }
 
-void InputDefault::_get_mapped_hat_events(const JoyDeviceMapping &mapping, int p_hat, JoyEvent r_events[]) {
+void InputDefault::_get_mapped_hat_events(const JoyDeviceMapping &mapping, int p_hat, JoyEvent r_events[(size_t)HAT_MAX]) {
 	for (int i = 0; i < mapping.bindings.size(); i++) {
 		const JoyBinding binding = mapping.bindings[i];
 		if (binding.inputType == TYPE_HAT && binding.input.hat.hat == p_hat) {

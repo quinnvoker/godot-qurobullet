@@ -31,6 +31,7 @@
 #include "navigation_mesh.h"
 
 void NavigationMesh::create_from_mesh(const Ref<Mesh> &p_mesh) {
+	ERR_FAIL_COND(p_mesh.is_null());
 	vertices = PoolVector<Vector3>();
 	clear_polygons();
 
@@ -40,6 +41,7 @@ void NavigationMesh::create_from_mesh(const Ref<Mesh> &p_mesh) {
 			continue;
 		}
 		Array arr = p_mesh->surface_get_arrays(i);
+		ERR_CONTINUE(arr.size() != Mesh::ARRAY_MAX);
 		PoolVector<Vector3> varr = arr[Mesh::ARRAY_VERTEX];
 		PoolVector<int> iarr = arr[Mesh::ARRAY_INDEX];
 		if (varr.size() == 0 || iarr.size() == 0) {
@@ -266,6 +268,24 @@ bool NavigationMesh::get_filter_walkable_low_height_spans() const {
 	return filter_walkable_low_height_spans;
 }
 
+void NavigationMesh::set_filter_baking_aabb(const AABB &p_aabb) {
+	filter_baking_aabb = p_aabb;
+	_change_notify();
+}
+
+AABB NavigationMesh::get_filter_baking_aabb() const {
+	return filter_baking_aabb;
+}
+
+void NavigationMesh::set_filter_baking_aabb_offset(const Vector3 &p_aabb_offset) {
+	filter_baking_aabb_offset = p_aabb_offset;
+	_change_notify();
+}
+
+Vector3 NavigationMesh::get_filter_baking_aabb_offset() const {
+	return filter_baking_aabb_offset;
+}
+
 void NavigationMesh::set_vertices(const PoolVector<Vector3> &p_vertices) {
 	vertices = p_vertices;
 	_change_notify();
@@ -299,13 +319,16 @@ void NavigationMesh::add_polygon(const Vector<int> &p_polygon) {
 	polygons.push_back(polygon);
 	_change_notify();
 }
+
 int NavigationMesh::get_polygon_count() const {
 	return polygons.size();
 }
+
 Vector<int> NavigationMesh::get_polygon(int p_idx) {
 	ERR_FAIL_INDEX_V(p_idx, polygons.size(), Vector<int>());
 	return polygons[p_idx].indices;
 }
+
 void NavigationMesh::clear_polygons() {
 	polygons.clear();
 }
@@ -462,6 +485,10 @@ void NavigationMesh::_bind_methods() {
 
 	ClassDB::bind_method(D_METHOD("set_filter_walkable_low_height_spans", "filter_walkable_low_height_spans"), &NavigationMesh::set_filter_walkable_low_height_spans);
 	ClassDB::bind_method(D_METHOD("get_filter_walkable_low_height_spans"), &NavigationMesh::get_filter_walkable_low_height_spans);
+	ClassDB::bind_method(D_METHOD("set_filter_baking_aabb", "baking_aabb"), &NavigationMesh::set_filter_baking_aabb);
+	ClassDB::bind_method(D_METHOD("get_filter_baking_aabb"), &NavigationMesh::get_filter_baking_aabb);
+	ClassDB::bind_method(D_METHOD("set_filter_baking_aabb_offset", "baking_aabb_offset"), &NavigationMesh::set_filter_baking_aabb_offset);
+	ClassDB::bind_method(D_METHOD("get_filter_baking_aabb_offset"), &NavigationMesh::get_filter_baking_aabb_offset);
 
 	ClassDB::bind_method(D_METHOD("set_vertices", "vertices"), &NavigationMesh::set_vertices);
 	ClassDB::bind_method(D_METHOD("get_vertices"), &NavigationMesh::get_vertices);
@@ -509,6 +536,8 @@ void NavigationMesh::_bind_methods() {
 	ADD_PROPERTY(PropertyInfo(Variant::BOOL, "filter_low_hanging_obstacles"), "set_filter_low_hanging_obstacles", "get_filter_low_hanging_obstacles");
 	ADD_PROPERTY(PropertyInfo(Variant::BOOL, "filter_ledge_spans"), "set_filter_ledge_spans", "get_filter_ledge_spans");
 	ADD_PROPERTY(PropertyInfo(Variant::BOOL, "filter_walkable_low_height_spans"), "set_filter_walkable_low_height_spans", "get_filter_walkable_low_height_spans");
+	ADD_PROPERTY(PropertyInfo(Variant::AABB, "filter_baking_aabb"), "set_filter_baking_aabb", "get_filter_baking_aabb");
+	ADD_PROPERTY(PropertyInfo(Variant::VECTOR3, "filter_baking_aabb_offset"), "set_filter_baking_aabb_offset", "get_filter_baking_aabb_offset");
 
 	BIND_ENUM_CONSTANT(SAMPLE_PARTITION_WATERSHED);
 	BIND_ENUM_CONSTANT(SAMPLE_PARTITION_MONOTONE);
@@ -579,27 +608,4 @@ bool NavigationMesh::_get(const StringName &p_name, Variant &r_ret) const {
 }
 #endif // DISABLE_DEPRECATED
 
-NavigationMesh::NavigationMesh() {
-	cell_size = 0.25f;
-	cell_height = 0.25f;
-	agent_height = 1.5f;
-	agent_radius = 0.5f;
-	agent_max_climb = 0.25f;
-	agent_max_slope = 45.0f;
-	region_min_size = 2.0f;
-	region_merge_size = 20.0f;
-	edge_max_length = 12.0f;
-	edge_max_error = 1.3f;
-	verts_per_poly = 6.0f;
-	detail_sample_distance = 6.0f;
-	detail_sample_max_error = 5.0f;
-
-	partition_type = SAMPLE_PARTITION_WATERSHED;
-	parsed_geometry_type = PARSED_GEOMETRY_MESH_INSTANCES;
-	collision_mask = 0xFFFFFFFF;
-	source_geometry_mode = SOURCE_GEOMETRY_NAVMESH_CHILDREN;
-	source_group_name = "navmesh";
-	filter_low_hanging_obstacles = false;
-	filter_ledge_spans = false;
-	filter_walkable_low_height_spans = false;
-}
+NavigationMesh::NavigationMesh() {}

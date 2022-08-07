@@ -28,8 +28,8 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                */
 /*************************************************************************/
 
-#ifndef RASTERIZERSTORAGEGLES3_H
-#define RASTERIZERSTORAGEGLES3_H
+#ifndef RASTERIZER_STORAGE_GLES3_H
+#define RASTERIZER_STORAGE_GLES3_H
 
 #include "core/self_list.h"
 #include "drivers/gles_common/rasterizer_asserts.h"
@@ -142,6 +142,7 @@ public:
 		GLuint black_tex;
 		GLuint normal_tex;
 		GLuint aniso_tex;
+		GLuint depth_tex;
 
 		GLuint white_tex_3d;
 		GLuint white_tex_array;
@@ -164,6 +165,8 @@ public:
 			uint32_t material_switch_count;
 			uint32_t surface_switch_count;
 			uint32_t shader_rebind_count;
+			uint32_t shader_compiles_started_count;
+			uint32_t shader_compiles_in_progress_count;
 			uint32_t vertices_count;
 			uint32_t _2d_item_count;
 			uint32_t _2d_draw_call_count;
@@ -174,6 +177,8 @@ public:
 				material_switch_count = 0;
 				surface_switch_count = 0;
 				shader_rebind_count = 0;
+				shader_compiles_started_count = 0;
+				shader_compiles_in_progress_count = 0;
 				vertices_count = 0;
 				_2d_item_count = 0;
 				_2d_draw_call_count = 0;
@@ -1487,7 +1492,6 @@ public:
 		float time[4];
 		float delta;
 		uint64_t count;
-		int shader_compiles_started;
 
 	} frame;
 
@@ -1555,4 +1559,4 @@ inline void RasterizerStorageGLES3::buffer_orphan_and_upload(unsigned int p_buff
 	glBufferSubData(p_target, p_offset_bytes, p_data_size_bytes, p_data);
 }
 
-#endif // RASTERIZERSTORAGEGLES3_H
+#endif // RASTERIZER_STORAGE_GLES3_H

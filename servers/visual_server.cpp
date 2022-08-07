@@ -2095,6 +2095,7 @@ void VisualServer::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("viewport_set_use_debanding", "viewport", "debanding"), &VisualServer::viewport_set_use_debanding);
 	ClassDB::bind_method(D_METHOD("viewport_set_sharpen_intensity", "viewport", "intensity"), &VisualServer::viewport_set_sharpen_intensity);
 	ClassDB::bind_method(D_METHOD("viewport_set_hdr", "viewport", "enabled"), &VisualServer::viewport_set_hdr);
+	ClassDB::bind_method(D_METHOD("viewport_set_use_32_bpc_depth", "viewport", "enabled"), &VisualServer::viewport_set_use_32_bpc_depth);
 	ClassDB::bind_method(D_METHOD("viewport_set_usage", "viewport", "usage"), &VisualServer::viewport_set_usage);
 	ClassDB::bind_method(D_METHOD("viewport_get_render_info", "viewport", "info"), &VisualServer::viewport_get_render_info);
 	ClassDB::bind_method(D_METHOD("viewport_set_debug_draw", "viewport", "draw"), &VisualServer::viewport_set_debug_draw);
@@ -2465,6 +2466,7 @@ void VisualServer::_bind_methods() {
 	BIND_ENUM_CONSTANT(INFO_VERTICES_IN_FRAME);
 	BIND_ENUM_CONSTANT(INFO_MATERIAL_CHANGES_IN_FRAME);
 	BIND_ENUM_CONSTANT(INFO_SHADER_CHANGES_IN_FRAME);
+	BIND_ENUM_CONSTANT(INFO_SHADER_COMPILES_IN_FRAME);
 	BIND_ENUM_CONSTANT(INFO_SURFACE_CHANGES_IN_FRAME);
 	BIND_ENUM_CONSTANT(INFO_DRAW_CALLS_IN_FRAME);
 	BIND_ENUM_CONSTANT(INFO_2D_ITEMS_IN_FRAME);
@@ -2625,12 +2627,12 @@ VisualServer::VisualServer() {
 
 	GLOBAL_DEF("rendering/quality/directional_shadow/size", 4096);
 	GLOBAL_DEF("rendering/quality/directional_shadow/size.mobile", 2048);
-	ProjectSettings::get_singleton()->set_custom_property_info("rendering/quality/directional_shadow/size", PropertyInfo(Variant::INT, "rendering/quality/directional_shadow/size", PROPERTY_HINT_RANGE, "256,16384"));
+	ProjectSettings::get_singleton()->set_custom_property_info("rendering/quality/directional_shadow/size", PropertyInfo(Variant::INT, "rendering/quality/directional_shadow/size", PROPERTY_HINT_RANGE, "256,16384,256"));
 	GLOBAL_DEF_RST("rendering/quality/shadow_atlas/size", 4096);
 	GLOBAL_DEF("rendering/quality/shadow_atlas/size.mobile", 2048);
-	ProjectSettings::get_singleton()->set_custom_property_info("rendering/quality/shadow_atlas/size", PropertyInfo(Variant::INT, "rendering/quality/shadow_atlas/size", PROPERTY_HINT_RANGE, "256,16384"));
+	ProjectSettings::get_singleton()->set_custom_property_info("rendering/quality/shadow_atlas/size", PropertyInfo(Variant::INT, "rendering/quality/shadow_atlas/size", PROPERTY_HINT_RANGE, "256,16384,256"));
 	GLOBAL_DEF_RST("rendering/quality/shadow_atlas/cubemap_size", 512);
-	ProjectSettings::get_singleton()->set_custom_property_info("rendering/quality/shadow_atlas/cubemap_size", PropertyInfo(Variant::INT, "rendering/quality/shadow_atlas/cubemap_size", PROPERTY_HINT_RANGE, "64,16384"));
+	ProjectSettings::get_singleton()->set_custom_property_info("rendering/quality/shadow_atlas/cubemap_size", PropertyInfo(Variant::INT, "rendering/quality/shadow_atlas/cubemap_size", PROPERTY_HINT_RANGE, "64,16384,64"));
 	GLOBAL_DEF("rendering/quality/shadow_atlas/quadrant_0_subdiv", 1);
 	GLOBAL_DEF("rendering/quality/shadow_atlas/quadrant_1_subdiv", 2);
 	GLOBAL_DEF("rendering/quality/shadow_atlas/quadrant_2_subdiv", 3);
@@ -2737,13 +2739,16 @@ VisualServer::VisualServer() {
 	GLOBAL_DEF("rendering/gles3/shaders/shader_compilation_mode", 0);
 	ProjectSettings::get_singleton()->set_custom_property_info("rendering/gles3/shaders/shader_compilation_mode", PropertyInfo(Variant::INT, "rendering/gles3/shaders/shader_compilation_mode", PROPERTY_HINT_ENUM, "Synchronous,Asynchronous,Asynchronous + Cache"));
 	GLOBAL_DEF("rendering/gles3/shaders/shader_compilation_mode.mobile", 0);
+	GLOBAL_DEF("rendering/gles3/shaders/shader_compilation_mode.web", 0);
 	GLOBAL_DEF("rendering/gles3/shaders/max_simultaneous_compiles", 2);
 	ProjectSettings::get_singleton()->set_custom_property_info("rendering/gles3/shaders/max_simultaneous_compiles", PropertyInfo(Variant::INT, "rendering/gles3/shaders/max_simultaneous_compiles", PROPERTY_HINT_RANGE, "1,8,1"));
 	GLOBAL_DEF("rendering/gles3/shaders/max_simultaneous_compiles.mobile", 1);
+	GLOBAL_DEF("rendering/gles3/shaders/max_simultaneous_compiles.web", 1);
 	GLOBAL_DEF("rendering/gles3/shaders/log_active_async_compiles_count", false);
 	GLOBAL_DEF("rendering/gles3/shaders/shader_cache_size_mb", 512);
 	ProjectSettings::get_singleton()->set_custom_property_info("rendering/gles3/shaders/shader_cache_size_mb", PropertyInfo(Variant::INT, "rendering/gles3/shaders/shader_cache_size_mb", PROPERTY_HINT_RANGE, "128,4096,128"));
 	GLOBAL_DEF("rendering/gles3/shaders/shader_cache_size_mb.mobile", 128);
+	GLOBAL_DEF("rendering/gles3/shaders/shader_cache_size_mb.web", 128);
 }
 
 VisualServer::~VisualServer() {

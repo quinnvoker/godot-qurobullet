@@ -371,7 +371,7 @@ void Node::_propagate_exit_tree() {
 	if (data.parent) {
 		Variant c = this;
 		const Variant *cptr = &c;
-		data.parent->emit_signal(SceneStringNames::get_singleton()->child_exited_tree, &cptr, 1);
+		data.parent->emit_signal(SceneStringNames::get_singleton()->child_exiting_tree, &cptr, 1);
 	}
 
 	// exit groups
@@ -456,6 +456,9 @@ void Node::remove_child_notify(Node *p_child) {
 
 void Node::move_child_notify(Node *p_child) {
 	// to be used when not wanted
+}
+
+void Node::owner_changed_notify() {
 }
 
 void Node::_physics_interpolated_changed() {}
@@ -1605,6 +1608,8 @@ void Node::_set_owner_nocheck(Node *p_owner) {
 	data.owner = p_owner;
 	data.owner->data.owned.push_back(this);
 	data.OW = data.owner->data.owned.back();
+
+	owner_changed_notify();
 }
 
 void Node::_release_unique_name_in_owner() {
@@ -2837,7 +2842,16 @@ static void _Node_debug_sn(Object *p_obj) {
 	} else {
 		path = String(p->get_name()) + "/" + p->get_path_to(n);
 	}
-	print_line(itos(p_obj->get_instance_id()) + " - Stray Node: " + path + " (Type: " + n->get_class() + ")");
+
+	String script_file_string;
+	if (!n->get_script().is_null()) {
+		Ref<Script> script = n->get_script();
+		if (script.is_valid()) {
+			script_file_string = ", Script: " + script->get_path();
+		}
+	}
+
+	print_line(itos(p_obj->get_instance_id()) + " - Stray Node: " + path + " (Type: " + n->get_class() + script_file_string + ")");
 }
 #endif // DEBUG_ENABLED
 
@@ -3149,7 +3163,7 @@ void Node::_bind_methods() {
 	ADD_SIGNAL(MethodInfo("tree_exiting"));
 	ADD_SIGNAL(MethodInfo("tree_exited"));
 	ADD_SIGNAL(MethodInfo("child_entered_tree", PropertyInfo(Variant::OBJECT, "node", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_DEFAULT, "Node")));
-	ADD_SIGNAL(MethodInfo("child_exited_tree", PropertyInfo(Variant::OBJECT, "node", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_DEFAULT, "Node")));
+	ADD_SIGNAL(MethodInfo("child_exiting_tree", PropertyInfo(Variant::OBJECT, "node", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_DEFAULT, "Node")));
 
 	ADD_PROPERTY(PropertyInfo(Variant::INT, "pause_mode", PROPERTY_HINT_ENUM, "Inherit,Stop,Process"), "set_pause_mode", "get_pause_mode");
 

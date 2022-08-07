@@ -96,6 +96,7 @@ private:
 	//@TODO Optimize to a fixed set of shader pools and use a LRU
 	int uniform_count;
 	int texunit_pair_count;
+	int shadow_texunit_count;
 	int conditional_count;
 	int ubo_count;
 	int feedback_count;
@@ -132,8 +133,10 @@ public:
 	static bool parallel_compile_supported; // True if using natively supported asyncrhonous compilation
 
 	static bool async_hidden_forbidden;
-	static int *compiles_started_this_frame;
-	static int max_simultaneous_compiles;
+	static uint32_t *compiles_started_this_frame;
+	static uint32_t *max_frame_compiles_in_progress;
+	static uint32_t max_simultaneous_compiles;
+	static uint32_t active_compiles_count;
 #ifdef DEBUG_ENABLED
 	static bool log_active_async_compiles_count;
 #endif
@@ -142,8 +145,6 @@ public:
 	static void advance_async_shaders_compilation();
 
 private:
-	static int active_compiles_count;
-
 	union VersionKey {
 		static const uint32_t UBERSHADER_FLAG = ((uint32_t)1) << 31;
 		struct {
@@ -245,6 +246,7 @@ private:
 	const char **uniform_names;
 	const AttributePair *attribute_pairs;
 	const TexUnitPair *texunit_pairs;
+	const int *shadow_texunits;
 	const UBOPair *ubo_pairs;
 	const Feedback *feedbacks;
 	const char *vertex_code;
@@ -278,6 +280,7 @@ private:
 	static ShaderGLES3 *active;
 
 	int max_image_units;
+	GLuint depth_tex = 0;
 
 	_FORCE_INLINE_ void _set_uniform_variant(GLint p_uniform, const Variant &p_value) {
 		if (p_uniform < 0) {
@@ -375,7 +378,7 @@ protected:
 	_FORCE_INLINE_ int _get_uniform(int p_which) const;
 	_FORCE_INLINE_ void _set_conditional(int p_which, bool p_value);
 
-	void setup(const char **p_conditional_defines, int p_conditional_count, const char **p_uniform_names, int p_uniform_count, const AttributePair *p_attribute_pairs, int p_attribute_count, const TexUnitPair *p_texunit_pairs, int p_texunit_pair_count, const UBOPair *p_ubo_pairs, int p_ubo_pair_count, const Feedback *p_feedback, int p_feedback_count, const char *p_vertex_code, const char *p_fragment_code, int p_vertex_code_start, int p_fragment_code_start);
+	void setup(const char **p_conditional_defines, int p_conditional_count, const char **p_uniform_names, int p_uniform_count, const AttributePair *p_attribute_pairs, int p_attribute_count, const TexUnitPair *p_texunit_pairs, int p_texunit_pair_count, const int *p_shadow_texunits, int p_shadow_texunit_count, const UBOPair *p_ubo_pairs, int p_ubo_pair_count, const Feedback *p_feedback, int p_feedback_count, const char *p_vertex_code, const char *p_fragment_code, int p_vertex_code_start, int p_fragment_code_start);
 
 	ShaderGLES3();
 
@@ -404,7 +407,7 @@ public:
 	_FORCE_INLINE_ bool is_version_valid() const { return version && version->compile_status == Version::COMPILE_STATUS_OK; }
 
 	virtual void init() = 0;
-	void init_async_compilation();
+	void init_async_compilation(GLuint p_depth_tex);
 	bool is_async_compilation_supported();
 	void finish();
 
@@ -444,4 +447,4 @@ void ShaderGLES3::_set_conditional(int p_which, bool p_value) {
 	}
 }
 
-#endif
+#endif // SHADER_GLES3_H

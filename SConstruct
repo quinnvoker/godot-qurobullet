@@ -59,11 +59,13 @@ custom_tools = ["default"]
 
 platform_arg = ARGUMENTS.get("platform", ARGUMENTS.get("p", False))
 
-if os.name == "nt" and (platform_arg == "android" or methods.get_cmdline_bool("use_mingw", False)):
-    custom_tools = ["mingw"]
+if platform_arg == "android":
+    custom_tools = ["clang", "clang++", "as", "ar", "link"]
 elif platform_arg == "javascript":
     # Use generic POSIX build toolchain for Emscripten.
     custom_tools = ["cc", "c++", "ar", "link", "textfile", "zip"]
+elif os.name == "nt" and methods.get_cmdline_bool("use_mingw", False):
+    custom_tools = ["mingw"]
 
 # We let SCons build its default ENV as it includes OS-specific things which we don't
 # want to have to pull in manually.
@@ -230,6 +232,16 @@ else:
     if selected_platform != "":
         print("Automatically detected platform: " + selected_platform)
 
+if selected_platform == "macos":
+    # Alias for forward compatibility.
+    print('Platform "macos" is still called "osx" in Godot 3.x. Building for platform "osx".')
+    selected_platform = "osx"
+
+if selected_platform == "ios":
+    # Alias for forward compatibility.
+    print('Platform "ios" is still called "iphone" in Godot 3.x. Building for platform "iphone".')
+    selected_platform = "iphone"
+
 if selected_platform in ["linux", "bsd", "linuxbsd"]:
     if selected_platform == "linuxbsd":
         # Alias for forward compatibility.
@@ -356,10 +368,26 @@ if selected_platform in platform_list:
     sys.path.insert(0, tmppath)
     import detect
 
-    if "create" in dir(detect):
-        env = detect.create(env_base)
-    else:
-        env = env_base.Clone()
+    env = env_base.Clone()
+
+    # Default num_jobs to local cpu count if not user specified.
+    # SCons has a peculiarity where user-specified options won't be overridden
+    # by SetOption, so we can rely on this to know if we should use our default.
+    initial_num_jobs = env.GetOption("num_jobs")
+    altered_num_jobs = initial_num_jobs + 1
+    env.SetOption("num_jobs", altered_num_jobs)
+    # os.cpu_count() requires Python 3.4+.
+    if hasattr(os, "cpu_count") and env.GetOption("num_jobs") == altered_num_jobs:
+        cpu_count = os.cpu_count()
+        if cpu_count is None:
+            print("Couldn't auto-detect CPU count to configure build parallelism. Specify it with the -j argument.")
+        else:
+            safer_cpu_count = cpu_count if cpu_count <= 4 else cpu_count - 1
+            print(
+                "Auto-detected %d CPU cores available for build parallelism. Using %d cores by default. You can override it with the -j argument."
+                % (cpu_count, safer_cpu_count)
+            )
+            env.SetOption("num_jobs", safer_cpu_count)
 
     if env["compiledb"]:
         # Generating the compilation DB (`compile_commands.json`) requires SCons 4.0.0 or later.
@@ -680,7 +708,8 @@ if selected_platform in platform_list:
     SConscript("core/SCsub")
     SConscript("servers/SCsub")
     SConscript("scene/SCsub")
-    SConscript("editor/SCsub")
+    if env["tools"]:
+        SConscript("editor/SCsub")
     SConscript("drivers/SCsub")
 
     SConscript("platform/SCsub")
@@ -691,6 +720,9 @@ if selected_platform in platform_list:
 
     # Microsoft Visual Studio Project Generation
     if env["vsproj"]:
+        if os.name != "nt":
+            print("Error: The `vsproj` option is only usable on Windows with Visual Studio.")
+            Exit(255)
         env["CPPPATH"] = [Dir(path) for path in env["CPPPATH"]]
         methods.generate_vs_project(env, GetOption("num_jobs"))
         methods.generate_cpp_hint_file("cpp.hint")

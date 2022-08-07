@@ -129,7 +129,14 @@ void FileDialog::update_dir() {
 	dir->set_text(dir_access->get_current_dir_without_drive());
 
 	if (drives->is_visible()) {
-		drives->select(dir_access->get_current_drive());
+		if (dir_access->get_current_dir().is_network_share_path()) {
+			_update_drives(false);
+			drives->add_item(RTR("Network"));
+			drives->set_item_disabled(drives->get_item_count() - 1, true);
+			drives->select(drives->get_item_count() - 1);
+		} else {
+			drives->select(dir_access->get_current_drive());
+		}
 	}
 
 	// Deselect any item, to make "Select Current Folder" button text by default.
@@ -389,7 +396,12 @@ void FileDialog::update_file_name() {
 		String filter_str = filters[idx];
 		String file_str = file->get_text();
 		String base_name = file_str.get_basename();
-		file_str = base_name + "." + filter_str.strip_edges().to_lower();
+		Vector<String> filter_substr = filter_str.split(";");
+		if (filter_substr.size() >= 2) {
+			file_str = base_name + "." + filter_substr[0].strip_edges().get_extension().to_lower();
+		} else {
+			file_str = base_name + "." + filter_str.strip_edges().get_extension().to_lower();
+		}
 		file->set_text(file_str);
 	}
 }
@@ -749,7 +761,7 @@ void FileDialog::_select_drive(int p_idx) {
 	update_dir();
 }
 
-void FileDialog::_update_drives() {
+void FileDialog::_update_drives(bool p_select) {
 	int dc = dir_access->get_drive_count();
 	if (dc == 0 || access != ACCESS_FILESYSTEM) {
 		drives->hide();
@@ -767,7 +779,9 @@ void FileDialog::_update_drives() {
 			drives->add_item(dir_access->get_drive(i));
 		}
 
-		drives->select(dir_access->get_current_drive());
+		if (p_select) {
+			drives->select(dir_access->get_current_drive());
+		}
 	}
 }
 

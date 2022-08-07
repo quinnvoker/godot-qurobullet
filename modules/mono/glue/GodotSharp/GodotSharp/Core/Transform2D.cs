@@ -14,7 +14,7 @@ namespace Godot
     /// It consists of a three <see cref="Vector2"/> values: x, y, and the origin.
     ///
     /// For more information, read this documentation article:
-    /// https://docs.godotengine.org/en/3.4/tutorials/math/matrices_and_transforms.html
+    /// https://docs.godotengine.org/en/3.5/tutorials/math/matrices_and_transforms.html
     /// </summary>
     [Serializable]
     [StructLayout(LayoutKind.Sequential)]
@@ -301,9 +301,9 @@ namespace Godot
         /// </summary>
         /// <param name="angle">The angle to rotate, in radians.</param>
         /// <returns>The rotated transformation matrix.</returns>
-        public Transform2D Rotated(real_t phi)
+        public Transform2D Rotated(real_t angle)
         {
-            return this * new Transform2D(phi, new Vector2());
+            return this * new Transform2D(angle, new Vector2());
         }
 
         /// <summary>
@@ -318,14 +318,6 @@ namespace Godot
             copy.y *= scale;
             copy.origin *= scale;
             return copy;
-        }
-
-        private void ScaleBasis(Vector2 scale)
-        {
-            x.x *= scale.x;
-            x.y *= scale.y;
-            y.x *= scale.x;
-            y.y *= scale.y;
         }
 
         private real_t Tdotx(Vector2 with)

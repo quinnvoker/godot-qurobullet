@@ -220,9 +220,10 @@ msgid "Data"
 msgstr ""
 
 #: core/io/file_access_network.cpp core/register_core_types.cpp
-#: editor/editor_settings.cpp main/main.cpp
+#: editor/editor_file_dialog.cpp editor/editor_settings.cpp main/main.cpp
 #: modules/gdscript/language_server/gdscript_language_server.cpp
 #: modules/webrtc/webrtc_data_channel.h modules/websocket/websocket_macros.h
+#: scene/gui/file_dialog.cpp
 #, fuzzy
 msgid "Network"
 msgstr "匯出"
@@ -379,6 +380,15 @@ msgstr ""
 msgid "Max Size (KB)"
 msgstr ""
 
+#: core/os/input.cpp
+#, fuzzy
+msgid "Mouse Mode"
+msgstr "移動模式"
+
+#: core/os/input.cpp
+msgid "Use Accumulated Input"
+msgstr ""
+
 #: core/os/input_event.cpp editor/project_settings_editor.cpp
 #: servers/audio_server.cpp
 msgid "Device"
@@ -406,6 +416,11 @@ msgstr ""
 #, fuzzy
 msgid "Command"
 msgstr "社群"
+
+#: core/os/input_event.cpp
+#, fuzzy
+msgid "Physical"
+msgstr "物理幀  %"
 
 #: core/os/input_event.cpp scene/2d/touch_screen_button.cpp
 #: scene/gui/base_button.cpp scene/gui/texture_button.cpp
@@ -462,6 +477,10 @@ msgstr ""
 #, fuzzy
 msgid "Pressure"
 msgstr "重設縮放比例"
+
+#: core/os/input_event.cpp
+msgid "Pen Inverted"
+msgstr ""
 
 #: core/os/input_event.cpp
 msgid "Relative"
@@ -576,7 +595,8 @@ msgstr "描述："
 
 #: core/project_settings.cpp editor/editor_node.cpp editor/editor_settings.cpp
 #: editor/plugins/script_editor_plugin.cpp editor/project_manager.cpp
-#: main/main.cpp
+#: main/main.cpp platform/android/export/export_plugin.cpp
+#: platform/javascript/export/export.cpp
 msgid "Run"
 msgstr "運行"
 
@@ -665,6 +685,11 @@ msgid "Main Run Args"
 msgstr ""
 
 #: core/project_settings.cpp
+#, fuzzy
+msgid "Scene Naming"
+msgstr "場景路徑:"
+
+#: core/project_settings.cpp
 msgid "Search In File Extensions"
 msgstr ""
 
@@ -672,20 +697,15 @@ msgstr ""
 msgid "Script Templates Search Path"
 msgstr ""
 
-#: core/project_settings.cpp editor/editor_node.cpp
-#: editor/plugins/version_control_editor_plugin.cpp
+#: core/project_settings.cpp
 #, fuzzy
-msgid "Version Control"
+msgid "Version Control Autoload On Startup"
 msgstr "版本："
 
 #: core/project_settings.cpp
-msgid "Autoload On Startup"
-msgstr ""
-
-#: core/project_settings.cpp
 #, fuzzy
-msgid "Plugin Name"
-msgstr "插件列表:"
+msgid "Version Control Plugin Name"
+msgstr "版本："
 
 #: core/project_settings.cpp scene/2d/collision_object_2d.cpp
 #: scene/3d/collision_object.cpp scene/gui/control.cpp
@@ -796,7 +816,8 @@ msgid "Quality"
 msgstr ""
 
 #: core/project_settings.cpp scene/gui/file_dialog.cpp
-#: scene/main/scene_tree.cpp servers/visual_server.cpp
+#: scene/main/scene_tree.cpp scene/resources/navigation_mesh.cpp
+#: servers/visual_server.cpp
 #, fuzzy
 msgid "Filters"
 msgstr "篩選:"
@@ -2207,14 +2228,15 @@ msgstr "最愛："
 msgid "Recent:"
 msgstr "最近:"
 
-#: editor/create_dialog.cpp editor/plugins/script_editor_plugin.cpp
-#: editor/property_selector.cpp editor/quick_open.cpp editor/rename_dialog.cpp
+#: editor/create_dialog.cpp editor/editor_quick_open.cpp
+#: editor/plugins/script_editor_plugin.cpp editor/property_selector.cpp
+#: editor/rename_dialog.cpp
 #: modules/visual_script/visual_script_property_selector.cpp
 msgid "Search:"
 msgstr "搜尋："
 
-#: editor/create_dialog.cpp editor/plugins/script_editor_plugin.cpp
-#: editor/property_selector.cpp editor/quick_open.cpp
+#: editor/create_dialog.cpp editor/editor_quick_open.cpp
+#: editor/plugins/script_editor_plugin.cpp editor/property_selector.cpp
 #: modules/visual_script/visual_script_property_selector.cpp
 msgid "Matches:"
 msgstr "吻合："
@@ -2270,8 +2292,8 @@ msgstr ""
 
 #: editor/dependency_editor.cpp editor/editor_file_dialog.cpp
 #: editor/editor_help_search.cpp editor/editor_node.cpp
-#: editor/filesystem_dock.cpp editor/plugins/script_editor_plugin.cpp
-#: editor/property_selector.cpp editor/quick_open.cpp
+#: editor/editor_quick_open.cpp editor/filesystem_dock.cpp
+#: editor/plugins/script_editor_plugin.cpp editor/property_selector.cpp
 #: editor/script_create_dialog.cpp
 #: modules/visual_script/visual_script_property_selector.cpp
 #: scene/gui/file_dialog.cpp
@@ -2279,7 +2301,7 @@ msgid "Open"
 msgstr "開啟"
 
 #: editor/dependency_editor.cpp
-msgid "Owners Of:"
+msgid "Owners of: %s (Total: %d)"
 msgstr ""
 
 #: editor/dependency_editor.cpp
@@ -2589,7 +2611,7 @@ msgid "Bus Options"
 msgstr "選項"
 
 #: editor/editor_audio_buses.cpp editor/filesystem_dock.cpp
-#: editor/scene_tree_dock.cpp
+#: editor/project_export.cpp editor/scene_tree_dock.cpp
 msgid "Duplicate"
 msgstr "再製"
 
@@ -2864,6 +2886,24 @@ msgid "Choose"
 msgstr "選擇"
 
 #: editor/editor_export.cpp
+msgid "Project export for platform:"
+msgstr ""
+
+#: editor/editor_export.cpp
+#, fuzzy
+msgid "Completed with warnings."
+msgstr "複製路徑"
+
+#: editor/editor_export.cpp
+msgid "Completed successfully."
+msgstr ""
+
+#: editor/editor_export.cpp
+#, fuzzy
+msgid "Failed."
+msgstr "失敗："
+
+#: editor/editor_export.cpp
 msgid "Storing File:"
 msgstr ""
 
@@ -2874,6 +2914,31 @@ msgstr ""
 #: editor/editor_export.cpp
 msgid "Packing"
 msgstr ""
+
+#: editor/editor_export.cpp
+#, fuzzy
+msgid "Save PCK"
+msgstr "另存為"
+
+#: editor/editor_export.cpp
+#, fuzzy
+msgid "Cannot create file \"%s\"."
+msgstr "無法新增資料夾"
+
+#: editor/editor_export.cpp
+#, fuzzy
+msgid "Failed to export project files."
+msgstr "無法新增資料夾"
+
+#: editor/editor_export.cpp
+#, fuzzy
+msgid "Can't open file to read from path \"%s\"."
+msgstr "不能開啟檔案以供寫入："
+
+#: editor/editor_export.cpp
+#, fuzzy
+msgid "Save ZIP"
+msgstr "另存為"
 
 #: editor/editor_export.cpp
 msgid ""
@@ -2979,8 +3044,29 @@ msgstr ""
 msgid "Custom release template not found."
 msgstr ""
 
+#: editor/editor_export.cpp
+#, fuzzy
+msgid "Prepare Template"
+msgstr "管理輸出範本"
+
+#: editor/editor_export.cpp platform/osx/export/export.cpp
+#, fuzzy
+msgid "The given export path doesn't exist."
+msgstr "檔案不存在."
+
 #: editor/editor_export.cpp platform/javascript/export/export.cpp
-msgid "Template file not found:"
+#, fuzzy
+msgid "Template file not found: \"%s\"."
+msgstr "時長（秒）。"
+
+#: editor/editor_export.cpp
+#, fuzzy
+msgid "Failed to copy export template."
+msgstr "管理輸出範本"
+
+#: editor/editor_export.cpp platform/windows/export/export.cpp
+#: platform/x11/export/export.cpp
+msgid "PCK Embedding"
 msgstr ""
 
 #: editor/editor_export.cpp
@@ -3167,9 +3253,9 @@ msgid "Import"
 msgstr "導入"
 
 #: editor/editor_feature_profile.cpp editor/project_export.cpp
-#: platform/android/export/export.cpp platform/javascript/export/export.cpp
-#: platform/osx/export/export.cpp platform/uwp/export/export.cpp
-#: platform/windows/export/export.cpp
+#: platform/android/export/export.cpp platform/android/export/export_plugin.cpp
+#: platform/javascript/export/export.cpp platform/osx/export/export.cpp
+#: platform/uwp/export/export.cpp platform/windows/export/export.cpp
 msgid "Export"
 msgstr "匯出"
 
@@ -4332,15 +4418,6 @@ msgid ""
 "Unable to write to file '%s', file in use, locked or lacking permissions."
 msgstr ""
 
-#: editor/editor_node.cpp editor/plugins/theme_editor_plugin.cpp
-msgid "Scene"
-msgstr "場景"
-
-#: editor/editor_node.cpp
-#, fuzzy
-msgid "Scene Naming"
-msgstr "場景路徑:"
-
 #: editor/editor_node.cpp editor/editor_settings.cpp editor/scene_tree_dock.cpp
 #: servers/arvr/arvr_interface.cpp
 msgid "Interface"
@@ -4468,6 +4545,11 @@ msgstr ""
 
 #: editor/editor_node.cpp editor/plugins/version_control_editor_plugin.cpp
 #, fuzzy
+msgid "Version Control"
+msgstr "版本："
+
+#: editor/editor_node.cpp editor/plugins/version_control_editor_plugin.cpp
+#, fuzzy
 msgid "Username"
 msgstr "重新命名"
 
@@ -4496,6 +4578,10 @@ msgstr ""
 #, fuzzy
 msgid "Add a new scene."
 msgstr "新增軌迹"
+
+#: editor/editor_node.cpp editor/plugins/theme_editor_plugin.cpp
+msgid "Scene"
+msgstr "場景"
 
 #: editor/editor_node.cpp
 #, fuzzy
@@ -5277,6 +5363,11 @@ msgid ""
 "as runnable."
 msgstr ""
 
+#: editor/editor_run_native.cpp
+#, fuzzy
+msgid "Project Run"
+msgstr "專案"
+
 #: editor/editor_run_script.cpp
 msgid "Write your logic in the _run() method."
 msgstr ""
@@ -5553,7 +5644,9 @@ msgid "Draw Spaces"
 msgstr ""
 
 #: editor/editor_settings.cpp editor/plugins/spatial_editor_plugin.cpp
-#: editor/plugins/tile_set_editor_plugin.cpp scene/main/scene_tree.cpp
+#: editor/plugins/tile_set_editor_plugin.cpp scene/2d/tile_map.cpp
+#: scene/main/scene_tree.cpp scene/resources/world.cpp
+#: scene/resources/world_2d.cpp
 #, fuzzy
 msgid "Navigation"
 msgstr "插件"
@@ -5577,6 +5670,15 @@ msgstr ""
 
 #: editor/editor_settings.cpp
 msgid "Mouse Extra Buttons Navigate History"
+msgstr ""
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Drag And Drop Selection"
+msgstr "刪除選中檔案"
+
+#: editor/editor_settings.cpp
+msgid "Stay In Script Editor On Node Selected"
 msgstr ""
 
 #: editor/editor_settings.cpp
@@ -7077,7 +7179,7 @@ msgstr ""
 
 #: editor/import/resource_importer_layered_texture.cpp
 #: editor/import/resource_importer_texture.cpp scene/2d/light_2d.cpp
-#: scene/gui/control.cpp scene/resources/navigation_mesh.cpp
+#: scene/gui/control.cpp
 #, fuzzy
 msgid "Filter"
 msgstr "篩選:"
@@ -7367,6 +7469,18 @@ msgstr ""
 #: editor/import/resource_importer_scene.cpp
 msgid "Saving..."
 msgstr "儲存中..."
+
+#: editor/import/resource_importer_texture.cpp
+msgid ""
+"%s: Texture detected as used as a normal map in 3D. Enabling red-green "
+"texture compression to reduce memory usage (blue channel is discarded)."
+msgstr ""
+
+#: editor/import/resource_importer_texture.cpp
+msgid ""
+"%s: Texture detected as used in 3D. Enabling filter, repeat, mipmap "
+"generation and VRAM texture compression."
+msgstr ""
 
 #: editor/import/resource_importer_texture.cpp
 msgid "2D, Detect 3D"
@@ -8088,8 +8202,17 @@ msgid "New Anim"
 msgstr "新增動畫"
 
 #: editor/plugins/animation_player_editor_plugin.cpp
+msgid "Create New Animation"
+msgstr ""
+
+#: editor/plugins/animation_player_editor_plugin.cpp
 msgid "Change Animation Name:"
 msgstr "更改動畫名稱："
+
+#: editor/plugins/animation_player_editor_plugin.cpp
+#: editor/plugins/sprite_frames_editor_plugin.cpp
+msgid "Rename Animation"
+msgstr "重新命名動畫"
 
 #: editor/plugins/animation_player_editor_plugin.cpp
 #: editor/plugins/sprite_frames_editor_plugin.cpp
@@ -8110,11 +8233,6 @@ msgstr "錯誤：無效的動畫名稱！"
 #, fuzzy
 msgid "Animation name already exists!"
 msgstr "錯誤：動畫名稱已存在！"
-
-#: editor/plugins/animation_player_editor_plugin.cpp
-#: editor/plugins/sprite_frames_editor_plugin.cpp
-msgid "Rename Animation"
-msgstr "重新命名動畫"
 
 #: editor/plugins/animation_player_editor_plugin.cpp
 msgid "Duplicate Animation"
@@ -8266,10 +8384,6 @@ msgstr ""
 #, fuzzy
 msgid "Pin AnimationPlayer"
 msgstr "貼上動畫"
-
-#: editor/plugins/animation_player_editor_plugin.cpp
-msgid "Create New Animation"
-msgstr ""
 
 #: editor/plugins/animation_player_editor_plugin.cpp
 msgid "Animation Name:"
@@ -10439,6 +10553,7 @@ msgid "Points"
 msgstr "下移"
 
 #: editor/plugins/polygon_2d_editor_plugin.cpp scene/2d/polygon_2d.cpp
+#: scene/resources/navigation_mesh.cpp
 #, fuzzy
 msgid "Polygons"
 msgstr "插件"
@@ -11892,7 +12007,7 @@ msgstr ""
 
 #: editor/plugins/sprite_editor_plugin.cpp
 #, fuzzy
-msgid "Convert to Mesh2D"
+msgid "Convert to MeshInstance2D"
 msgstr "轉為..."
 
 #: editor/plugins/sprite_editor_plugin.cpp
@@ -12004,6 +12119,11 @@ msgstr "新增動畫"
 #, fuzzy
 msgid "New Animation"
 msgstr "新的動畫名稱："
+
+#: editor/plugins/sprite_frames_editor_plugin.cpp
+#, fuzzy
+msgid "Filter animations"
+msgstr "篩選:"
 
 #: editor/plugins/sprite_frames_editor_plugin.cpp
 msgid "Speed:"
@@ -12951,8 +13071,7 @@ msgid "Select the previous shape, subtile, or Tile."
 msgstr ""
 
 #: editor/plugins/tile_set_editor_plugin.cpp scene/2d/sprite.cpp
-#: scene/3d/sprite_3d.cpp scene/resources/navigation_mesh.cpp
-#: scene/resources/texture.cpp
+#: scene/3d/sprite_3d.cpp scene/resources/texture.cpp
 #, fuzzy
 msgid "Region"
 msgstr "無干擾模式"
@@ -14480,31 +14599,9 @@ msgid "Delete preset '%s'?"
 msgstr "要刪除選中檔案?"
 
 #: editor/project_export.cpp
-msgid ""
-"Failed to export the project for platform '%s'.\n"
-"Export templates seem to be missing or invalid."
-msgstr ""
-
-#: editor/project_export.cpp
-msgid ""
-"Failed to export the project for platform '%s'.\n"
-"This might be due to a configuration issue in the export preset or your "
-"export settings."
-msgstr ""
-
-#: editor/project_export.cpp
 #, fuzzy
 msgid "Exporting All"
 msgstr "匯出"
-
-#: editor/project_export.cpp
-#, fuzzy
-msgid "The given export path doesn't exist:"
-msgstr "檔案不存在."
-
-#: editor/project_export.cpp
-msgid "Export templates for this platform are missing/corrupted:"
-msgstr ""
 
 #: editor/project_export.cpp
 #, fuzzy
@@ -14649,6 +14746,11 @@ msgstr "專案"
 #: editor/project_export.cpp
 msgid "Export templates for this platform are missing:"
 msgstr ""
+
+#: editor/project_export.cpp
+#, fuzzy
+msgid "Project Export"
+msgstr "專案開荒人"
 
 #: editor/project_export.cpp
 msgid "Manage Export Templates"
@@ -17057,7 +17159,7 @@ msgstr ""
 
 #: modules/csg/csg_shape.cpp scene/2d/collision_polygon_2d.cpp
 #: scene/2d/light_occluder_2d.cpp scene/2d/polygon_2d.cpp
-#: scene/3d/collision_polygon.cpp scene/resources/navigation_mesh.cpp
+#: scene/3d/collision_polygon.cpp
 #, fuzzy
 msgid "Polygon"
 msgstr "插件"
@@ -17665,7 +17767,6 @@ msgid "Use In Baked Light"
 msgstr ""
 
 #: modules/gridmap/grid_map.cpp scene/2d/tile_map.cpp
-#: scene/resources/navigation_mesh.cpp
 msgid "Cell"
 msgstr ""
 
@@ -17694,6 +17795,19 @@ msgstr "不選"
 #: scene/resources/material.cpp
 msgid "Mask"
 msgstr ""
+
+#: modules/gridmap/grid_map.cpp scene/2d/tile_map.cpp
+#, fuzzy
+msgid "Bake Navigation"
+msgstr "插件"
+
+#: modules/gridmap/grid_map.cpp scene/2d/navigation_2d.cpp
+#: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_polygon.cpp
+#: scene/2d/tile_map.cpp scene/3d/navigation.cpp scene/3d/navigation_agent.cpp
+#: scene/3d/navigation_mesh_instance.cpp
+#, fuzzy
+msgid "Navigation Layers"
+msgstr "插件"
 
 #: modules/gridmap/grid_map_editor_plugin.cpp
 #, fuzzy
@@ -19029,6 +19143,11 @@ msgid "The package must have at least one '.' separator."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
+#, fuzzy
+msgid "Custom Build"
+msgstr "貼上"
+
+#: platform/android/export/export_plugin.cpp
 msgid "Use Custom Build"
 msgstr ""
 
@@ -19036,6 +19155,16 @@ msgstr ""
 #, fuzzy
 msgid "Export Format"
 msgstr "匯出"
+
+#: platform/android/export/export_plugin.cpp
+#, fuzzy
+msgid "Min SDK"
+msgstr "下一個腳本"
+
+#: platform/android/export/export_plugin.cpp
+#, fuzzy
+msgid "Target SDK"
+msgstr "目標"
 
 #: platform/android/export/export_plugin.cpp platform/iphone/export/export.cpp
 msgid "Architectures"
@@ -19074,16 +19203,6 @@ msgstr "上一個tab"
 #: platform/android/export/export_plugin.cpp
 msgid "Code"
 msgstr ""
-
-#: platform/android/export/export_plugin.cpp
-#, fuzzy
-msgid "Min SDK"
-msgstr "下一個腳本"
-
-#: platform/android/export/export_plugin.cpp
-#, fuzzy
-msgid "Target SDK"
-msgstr "目標"
 
 #: platform/android/export/export_plugin.cpp platform/uwp/export/export.cpp
 #, fuzzy
@@ -19252,10 +19371,6 @@ msgid "Could not execute on device."
 msgstr "無法新增資料夾"
 
 #: platform/android/export/export_plugin.cpp
-msgid "Unable to find the 'apksigner' tool."
-msgstr ""
-
-#: platform/android/export/export_plugin.cpp
 msgid ""
 "Android build template not installed in the project. Install it from the "
 "Project menu."
@@ -19333,12 +19448,12 @@ msgstr ""
 
 #: platform/android/export/export_plugin.cpp
 msgid ""
-"\"Hand Tracking\" is only valid when \"Xr Mode\" is \"Oculus Mobile VrApi\" "
+"\"Hand Tracking\" is only valid when \"XR Mode\" is \"Oculus Mobile VrApi\" "
 "or \"OpenXR\"."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
-msgid "\"Passthrough\" is only valid when \"Xr Mode\" is \"OpenXR\"."
+msgid "\"Passthrough\" is only valid when \"XR Mode\" is \"OpenXR\"."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
@@ -19347,25 +19462,49 @@ msgstr ""
 
 #: platform/android/export/export_plugin.cpp
 msgid ""
-"Changing the \"Min Sdk\" is only valid when \"Use Custom Build\" is enabled."
+"\"Min SDK\" can only be overridden when \"Use Custom Build\" is enabled."
+msgstr ""
+
+#: platform/android/export/export_plugin.cpp
+msgid "\"Min SDK\" should be a valid integer, but got \"%s\" which is invalid."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
 msgid ""
-"Changing the \"Target Sdk\" is only valid when \"Use Custom Build\" is "
-"enabled."
-msgstr ""
-
-#: platform/android/export/export_plugin.cpp
-msgid "\"Target Sdk\" version must be greater or equal to \"Min Sdk\" version."
+"\"Min SDK\" cannot be lower than %d, which is the version needed by the "
+"Godot library."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
 msgid ""
-"'apksigner' could not be found.\n"
-"Please check the command is available in the Android SDK build-tools "
-"directory.\n"
-"The resulting %s is unsigned."
+"\"Target SDK\" can only be overridden when \"Use Custom Build\" is enabled."
+msgstr ""
+
+#: platform/android/export/export_plugin.cpp
+msgid ""
+"\"Target SDK\" should be a valid integer, but got \"%s\" which is invalid."
+msgstr ""
+
+#: platform/android/export/export_plugin.cpp
+msgid ""
+"\"Target SDK\" %d is higher than the default version %d. This may work, but "
+"wasn't tested and may be unstable."
+msgstr ""
+
+#: platform/android/export/export_plugin.cpp
+msgid "\"Target SDK\" version must be greater or equal to \"Min SDK\" version."
+msgstr ""
+
+#: platform/android/export/export_plugin.cpp platform/osx/export/export.cpp
+#: platform/windows/export/export.cpp
+#, fuzzy
+msgid "Code Signing"
+msgstr "訊號"
+
+#: platform/android/export/export_plugin.cpp
+msgid ""
+"'apksigner' could not be found. Please check that the command is available "
+"in the Android SDK build-tools directory. The resulting %s is unsigned."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
@@ -19381,6 +19520,10 @@ msgstr "正在掃描檔案， 請稍候..."
 #, fuzzy
 msgid "Could not find keystore, unable to export."
 msgstr "無法新增資料夾"
+
+#: platform/android/export/export_plugin.cpp
+msgid "Could not start apksigner executable."
+msgstr ""
 
 #: platform/android/export/export_plugin.cpp
 msgid "'apksigner' returned with error #%d"
@@ -19413,7 +19556,7 @@ msgid "Invalid filename! Android APK requires the *.apk extension."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
-msgid "Unsupported export format!\n"
+msgid "Unsupported export format!"
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
@@ -19424,20 +19567,19 @@ msgstr ""
 
 #: platform/android/export/export_plugin.cpp
 msgid ""
-"Android build version mismatch:\n"
-"   Template installed: %s\n"
-"   Godot Version: %s\n"
+"Android build version mismatch: Template installed: %s, Godot version: %s. "
 "Please reinstall Android build template from 'Project' menu."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
 msgid ""
-"Unable to overwrite res://android/build/res/*.xml files with project name"
+"Unable to overwrite res://android/build/res/*.xml files with project name."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
-msgid "Could not export project files to gradle project\n"
-msgstr ""
+#, fuzzy
+msgid "Could not export project files to gradle project."
+msgstr "無法新增資料夾"
 
 #: platform/android/export/export_plugin.cpp
 #, fuzzy
@@ -19450,7 +19592,7 @@ msgstr ""
 
 #: platform/android/export/export_plugin.cpp
 msgid ""
-"Building of Android project failed, check output for the error.\n"
+"Building of Android project failed, check output for the error. "
 "Alternatively visit docs.godotengine.org for Android build documentation."
 msgstr ""
 
@@ -19466,7 +19608,7 @@ msgstr ""
 
 #: platform/android/export/export_plugin.cpp
 #, fuzzy
-msgid "Package not found: %s"
+msgid "Package not found: \"%s\"."
 msgstr "時長（秒）。"
 
 #: platform/android/export/export_plugin.cpp
@@ -19476,15 +19618,12 @@ msgstr "連接中..."
 
 #: platform/android/export/export_plugin.cpp
 #, fuzzy
-msgid ""
-"Could not find template APK to export:\n"
-"%s"
+msgid "Could not find template APK to export: \"%s\"."
 msgstr "無法新增資料夾"
 
 #: platform/android/export/export_plugin.cpp
 msgid ""
-"Missing libraries in the export template for the selected architectures: "
-"%s.\n"
+"Missing libraries in the export template for the selected architectures: %s. "
 "Please build a template with all required libraries, or uncheck the missing "
 "architectures in the export preset."
 msgstr ""
@@ -19496,7 +19635,7 @@ msgstr "篩選檔案..."
 
 #: platform/android/export/export_plugin.cpp
 #, fuzzy
-msgid "Could not export project files"
+msgid "Could not export project files."
 msgstr "無法新增資料夾"
 
 #: platform/android/export/export_plugin.cpp
@@ -19738,6 +19877,17 @@ msgstr "貼上"
 msgid "Custom BG Color"
 msgstr "貼上"
 
+#: platform/iphone/export/export.cpp platform/javascript/export/export.cpp
+#: platform/osx/export/export.cpp
+#, fuzzy
+msgid "Prepare Templates"
+msgstr "管理輸出範本"
+
+#: platform/iphone/export/export.cpp platform/osx/export/export.cpp
+#, fuzzy
+msgid "Export template not found."
+msgstr "Export Template管理器"
+
 #: platform/iphone/export/export.cpp
 msgid "App Store Team ID not specified - cannot configure the project."
 msgstr ""
@@ -19762,23 +19912,32 @@ msgstr ""
 
 #: platform/javascript/export/export.cpp
 #, fuzzy
-msgid "Could not open template for export:"
+msgid "Could not open template for export: \"%s\"."
 msgstr "無法新增資料夾"
 
 #: platform/javascript/export/export.cpp
 #, fuzzy
-msgid "Invalid export template:"
+msgid "Invalid export template: \"%s\"."
 msgstr "管理輸出範本"
 
 #: platform/javascript/export/export.cpp
 #, fuzzy
-msgid "Could not write file:"
+msgid "Could not write file: \"%s\"."
 msgstr "無法新增資料夾"
+
+#: platform/javascript/export/export.cpp platform/osx/export/export.cpp
+#, fuzzy
+msgid "Icon Creation"
+msgstr "內容："
 
 #: platform/javascript/export/export.cpp
 #, fuzzy
-msgid "Could not read file:"
+msgid "Could not read file: \"%s\"."
 msgstr "無法新增資料夾"
+
+#: platform/javascript/export/export.cpp
+msgid "PWA"
+msgstr ""
 
 #: platform/javascript/export/export.cpp
 #, fuzzy
@@ -19856,17 +20015,17 @@ msgstr ""
 
 #: platform/javascript/export/export.cpp
 #, fuzzy
-msgid "Could not read HTML shell:"
+msgid "Could not read HTML shell: \"%s\"."
 msgstr "無法新增資料夾"
 
 #: platform/javascript/export/export.cpp
 #, fuzzy
-msgid "Could not create HTTP server directory:"
+msgid "Could not create HTTP server directory: %s."
 msgstr "無法新增資料夾"
 
 #: platform/javascript/export/export.cpp
 #, fuzzy
-msgid "Error starting HTTP server:"
+msgid "Error starting HTTP server: %d."
 msgstr "儲存TileSet時出現錯誤！"
 
 #: platform/javascript/export/export.cpp
@@ -20162,9 +20321,28 @@ msgid "Apple Team ID"
 msgstr ""
 
 #: platform/osx/export/export.cpp
+#, fuzzy
+msgid "Could not open icon file \"%s\"."
+msgstr "無法新增資料夾"
+
+#: platform/osx/export/export.cpp
+#, fuzzy
+msgid "Could not start xcrun executable."
+msgstr "無法新增資料夾"
+
+#: platform/osx/export/export.cpp
+#, fuzzy
+msgid "Notarization failed."
+msgstr "本地化"
+
+#: platform/osx/export/export.cpp
+msgid "Notarization request UUID: \"%s\""
+msgstr ""
+
+#: platform/osx/export/export.cpp
 msgid ""
-"Note: The notarization process generally takes less than an hour. When the "
-"process is completed, you'll receive an email."
+"The notarization process generally takes less than an hour. When the process "
+"is completed, you'll receive an email."
 msgstr ""
 
 #: platform/osx/export/export.cpp
@@ -20180,9 +20358,58 @@ msgid ""
 msgstr ""
 
 #: platform/osx/export/export.cpp
+msgid "Timestamping is not compatible with ad-hoc signature, and was disabled!"
+msgstr ""
+
+#: platform/osx/export/export.cpp
+msgid ""
+"Hardened Runtime is not compatible with ad-hoc signature, and was disabled!"
+msgstr ""
+
+#: platform/osx/export/export.cpp
+msgid "Built-in CodeSign failed with error \"%s\"."
+msgstr ""
+
+#: platform/osx/export/export.cpp
+msgid "Built-in CodeSign require regex module."
+msgstr ""
+
+#: platform/osx/export/export.cpp
+msgid ""
+"Could not start codesign executable, make sure Xcode command line tools are "
+"installed."
+msgstr ""
+
+#: platform/osx/export/export.cpp platform/windows/export/export.cpp
 #, fuzzy
 msgid "No identity found."
 msgstr "找不到!"
+
+#: platform/osx/export/export.cpp
+#, fuzzy
+msgid "Cannot sign file %s."
+msgstr "儲存TileSet時出現錯誤！"
+
+#: platform/osx/export/export.cpp
+msgid "Relative symlinks are not supported, exported \"%s\" might be broken!"
+msgstr ""
+
+#: platform/osx/export/export.cpp
+#, fuzzy
+msgid "DMG Creation"
+msgstr "描述："
+
+#: platform/osx/export/export.cpp
+msgid "Could not start hdiutil executable."
+msgstr ""
+
+#: platform/osx/export/export.cpp
+msgid "`hdiutil create` failed - file exists."
+msgstr ""
+
+#: platform/osx/export/export.cpp
+msgid "`hdiutil create` failed."
+msgstr ""
 
 #: platform/osx/export/export.cpp
 #, fuzzy
@@ -20191,8 +20418,13 @@ msgstr "正在建立縮圖"
 
 #: platform/osx/export/export.cpp
 #, fuzzy
-msgid "Could not find template app to export:"
+msgid "Could not find template app to export: \"%s\"."
 msgstr "無法新增資料夾"
+
+#: platform/osx/export/export.cpp
+#, fuzzy
+msgid "Invalid export format."
+msgstr "管理輸出範本"
 
 #: platform/osx/export/export.cpp
 msgid ""
@@ -20202,7 +20434,7 @@ msgstr ""
 
 #: platform/osx/export/export.cpp
 msgid ""
-"Requested template binary '%s' not found. It might be missing from your "
+"Requested template binary \"%s\" not found. It might be missing from your "
 "template archive."
 msgstr ""
 
@@ -20241,6 +20473,16 @@ msgstr ""
 #: platform/osx/export/export.cpp
 msgid "Sending archive for notarization"
 msgstr ""
+
+#: platform/osx/export/export.cpp
+#, fuzzy
+msgid "ZIP Creation"
+msgstr "專案"
+
+#: platform/osx/export/export.cpp
+#, fuzzy
+msgid "Could not open file to read from path \"%s\"."
+msgstr "無法新增資料夾"
 
 #: platform/osx/export/export.cpp
 #, fuzzy
@@ -20558,6 +20800,11 @@ msgid "Debug Algorithm"
 msgstr ""
 
 #: platform/windows/export/export.cpp
+#, fuzzy
+msgid "Failed to rename temporary file \"%s\"."
+msgstr "無法移除暫存檔："
+
+#: platform/windows/export/export.cpp
 msgid "Identity Type"
 msgstr ""
 
@@ -20604,6 +20851,70 @@ msgid "Trademarks"
 msgstr ""
 
 #: platform/windows/export/export.cpp
+#, fuzzy
+msgid "Resources Modification"
+msgstr "貼上動畫"
+
+#: platform/windows/export/export.cpp
+#, fuzzy
+msgid "Could not find rcedit executable at \"%s\"."
+msgstr "無法新增資料夾"
+
+#: platform/windows/export/export.cpp
+#, fuzzy
+msgid "Could not find wine executable at \"%s\"."
+msgstr "無法新增資料夾"
+
+#: platform/windows/export/export.cpp
+msgid ""
+"Could not start rcedit executable. Configure rcedit path in the Editor "
+"Settings (Export > Windows > Rcedit), or disable \"Application > Modify "
+"Resources\" in the export preset."
+msgstr ""
+
+#: platform/windows/export/export.cpp
+#, fuzzy
+msgid "rcedit failed to modify executable: %s."
+msgstr "無效副檔名"
+
+#: platform/windows/export/export.cpp
+#, fuzzy
+msgid "Could not find signtool executable at \"%s\"."
+msgstr "無法新增資料夾"
+
+#: platform/windows/export/export.cpp
+#, fuzzy
+msgid "Could not find osslsigncode executable at \"%s\"."
+msgstr "無法新增資料夾"
+
+#: platform/windows/export/export.cpp
+#, fuzzy
+msgid "Invalid identity type."
+msgstr "無效字型"
+
+#: platform/windows/export/export.cpp
+#, fuzzy
+msgid "Invalid timestamp server."
+msgstr "無效名稱。"
+
+#: platform/windows/export/export.cpp
+msgid ""
+"Could not start signtool executable. Configure signtool path in the Editor "
+"Settings (Export > Windows > Signtool), or disable \"Codesign\" in the "
+"export preset."
+msgstr ""
+
+#: platform/windows/export/export.cpp
+#, fuzzy
+msgid "Signtool failed to sign executable: %s."
+msgstr "無效副檔名"
+
+#: platform/windows/export/export.cpp
+#, fuzzy
+msgid "Failed to remove temporary file \"%s\"."
+msgstr "無法移除暫存檔："
+
+#: platform/windows/export/export.cpp
 msgid ""
 "The rcedit tool must be configured in the Editor Settings (Export > Windows "
 "> Rcedit) to change the icon or app information data."
@@ -20625,6 +20936,23 @@ msgid "Invalid product version:"
 msgstr "無效字型"
 
 #: platform/windows/export/export.cpp
+msgid "Windows executables cannot be >= 4 GiB."
+msgstr ""
+
+#: platform/windows/export/export.cpp platform/x11/export/export.cpp
+#, fuzzy
+msgid "Failed to open executable file \"%s\"."
+msgstr "無效副檔名"
+
+#: platform/windows/export/export.cpp platform/x11/export/export.cpp
+msgid "Executable file header corrupted."
+msgstr ""
+
+#: platform/windows/export/export.cpp platform/x11/export/export.cpp
+msgid "Executable \"pck\" section not found."
+msgstr ""
+
+#: platform/windows/export/export.cpp
 msgid "Windows"
 msgstr ""
 
@@ -20638,6 +20966,10 @@ msgstr ""
 
 #: platform/windows/export/export.cpp
 msgid "Wine"
+msgstr ""
+
+#: platform/x11/export/export.cpp
+msgid "32-bit executables cannot have embedded data >= 4 GiB."
 msgstr ""
 
 #: scene/2d/animated_sprite.cpp scene/3d/sprite_3d.cpp
@@ -20762,7 +21094,8 @@ msgstr ""
 
 #: scene/2d/audio_stream_player_2d.cpp scene/3d/audio_stream_player_3d.cpp
 #: scene/3d/light.cpp scene/3d/reflection_probe.cpp
-#: scene/3d/visual_instance.cpp scene/resources/material.cpp
+#: scene/3d/visibility_notifier.cpp scene/3d/visual_instance.cpp
+#: scene/resources/material.cpp
 #, fuzzy
 msgid "Max Distance"
 msgstr "Instance"
@@ -20811,7 +21144,7 @@ msgstr "放大"
 msgid "Custom Viewport"
 msgstr ""
 
-#: scene/2d/camera_2d.cpp scene/3d/camera.cpp
+#: scene/2d/camera_2d.cpp scene/3d/camera.cpp scene/3d/interpolated_camera.cpp
 #: scene/animation/animation_player.cpp scene/animation/animation_tree.cpp
 #: scene/animation/animation_tree_player.cpp scene/main/timer.cpp
 #, fuzzy
@@ -21517,9 +21850,40 @@ msgstr ""
 msgid "Edge Connection Margin"
 msgstr "編輯連接"
 
+#: scene/2d/navigation_2d.cpp
+msgid ""
+"'Navigation2D' node and 'Navigation2D.get_simple_path()' are deprecated and "
+"will be removed in a future version. Use 'Navigation2DServer.map_get_path()' "
+"instead."
+msgstr ""
+
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent.cpp
+#, fuzzy
+msgid "Pathfinding"
+msgstr "貼上動畫"
+
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent.cpp
+#, fuzzy
+msgid "Path Desired Distance"
+msgstr "選擇主場景"
+
 #: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent.cpp
 msgid "Target Desired Distance"
 msgstr ""
+
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent.cpp
+msgid "Path Max Distance"
+msgstr ""
+
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent.cpp
+#, fuzzy
+msgid "Avoidance"
+msgstr "進階"
+
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent.cpp
+#, fuzzy
+msgid "Avoidance Enabled"
+msgstr "啟用"
 
 #: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent.cpp
 msgid "Neighbor Dist"
@@ -21536,15 +21900,6 @@ msgstr ""
 #: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent.cpp
 msgid "Max Speed"
 msgstr ""
-
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent.cpp
-msgid "Path Max Distance"
-msgstr ""
-
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent.cpp
-#, fuzzy
-msgid "Avoidance Enabled"
-msgstr "啟用"
 
 #: scene/2d/navigation_agent_2d.cpp
 msgid ""
@@ -21568,13 +21923,16 @@ msgid ""
 msgstr ""
 
 #: scene/2d/navigation_polygon.cpp
-msgid ""
-"NavigationPolygonInstance must be a child or grandchild to a Navigation2D "
-"node. It only provides navigation data."
+msgid "Navpoly"
 msgstr ""
 
-#: scene/2d/navigation_polygon.cpp
-msgid "Navpoly"
+#: scene/2d/navigation_polygon.cpp scene/3d/navigation_mesh_instance.cpp
+#, fuzzy
+msgid "Enter Cost"
+msgstr "不選"
+
+#: scene/2d/navigation_polygon.cpp scene/3d/navigation_mesh_instance.cpp
+msgid "Travel Cost"
 msgstr ""
 
 #: scene/2d/node_2d.cpp scene/2d/polygon_2d.cpp scene/3d/spatial.cpp
@@ -21582,7 +21940,7 @@ msgstr ""
 msgid "Rotation Degrees"
 msgstr ""
 
-#: scene/2d/node_2d.cpp
+#: scene/2d/node_2d.cpp scene/3d/spatial.cpp
 #, fuzzy
 msgid "Global Rotation"
 msgstr "常數"
@@ -22701,6 +23059,13 @@ msgstr ""
 msgid "Transform Normals"
 msgstr "縮放selection"
 
+#: scene/3d/navigation.cpp
+msgid ""
+"'Navigation' node and 'Navigation.get_simple_path()' are deprecated and will "
+"be removed in a future version. Use 'NavigationServer.map_get_path()' "
+"instead."
+msgstr ""
+
 #: scene/3d/navigation.cpp scene/resources/curve.cpp
 #, fuzzy
 msgid "Up Vector"
@@ -22722,12 +23087,6 @@ msgstr ""
 #: scene/3d/navigation_agent.cpp
 msgid ""
 "The NavigationAgent can be used only under a Spatial inheriting parent node."
-msgstr ""
-
-#: scene/3d/navigation_mesh_instance.cpp
-msgid ""
-"NavigationMeshInstance must be a child or grandchild to a Navigation node. "
-"It only provides navigation data."
 msgstr ""
 
 #: scene/3d/navigation_mesh_instance.cpp scene/resources/mesh_library.cpp
@@ -23572,6 +23931,11 @@ msgid ""
 "running.\n"
 "Change the size in children collision shapes instead."
 msgstr ""
+
+#: scene/3d/spatial.cpp
+#, fuzzy
+msgid "Global Translation"
+msgstr "翻譯"
 
 #: scene/3d/spatial.cpp
 msgid "Matrix"
@@ -24761,6 +25125,11 @@ msgstr "資料夾："
 
 #: scene/gui/text_edit.cpp
 #, fuzzy
+msgid "Drag And Drop Selection Enabled"
+msgstr "只限選中"
+
+#: scene/gui/text_edit.cpp
+#, fuzzy
 msgid "Hiding Enabled"
 msgstr "啟用"
 
@@ -25154,19 +25523,20 @@ msgid "Viewport Path"
 msgstr "匯出"
 
 #: scene/main/viewport.cpp
-msgid ""
-"This viewport is not set as render target. If you intend for it to display "
-"its contents directly to the screen, make it a child of a Control so it can "
-"obtain a size. Otherwise, make it a RenderTarget and assign its internal "
-"texture to some node for display."
-msgstr ""
-
-#: scene/main/viewport.cpp
 #, fuzzy
 msgid ""
 "The Viewport size must be greater than or equal to 2 pixels on both "
 "dimensions to render anything."
 msgstr "viewport大小必須大於０以渲染任何東西。"
+
+#: scene/main/viewport.cpp
+msgid ""
+"This Viewport has HDR enabled, but its Usage is set to 2D or 2D No-"
+"Sampling.\n"
+"HDR is only supported in Viewports that have their Usage set to 3D or 3D No-"
+"Effects.\n"
+"HDR will be disabled for this Viewport."
+msgstr ""
 
 #: scene/main/viewport.cpp
 msgid "ARVR"
@@ -25321,6 +25691,16 @@ msgstr "物理幀  %"
 #, fuzzy
 msgid "3D Physics"
 msgstr "物理幀  %"
+
+#: scene/register_scene_types.cpp
+#, fuzzy
+msgid "2D Navigation"
+msgstr "插件"
+
+#: scene/register_scene_types.cpp
+#, fuzzy
+msgid "3D Navigation"
+msgstr "插件"
 
 #: scene/register_scene_types.cpp
 msgid "Use hiDPI"
@@ -26713,7 +27093,7 @@ msgstr "過渡"
 msgid "Refraction"
 msgstr "翻譯:"
 
-#: scene/resources/material.cpp scene/resources/navigation_mesh.cpp
+#: scene/resources/material.cpp
 msgid "Detail"
 msgstr ""
 
@@ -26794,7 +27174,12 @@ msgstr ""
 
 #: scene/resources/navigation_mesh.cpp
 #, fuzzy
-msgid "Sample Partition Type"
+msgid "Sampling"
+msgstr "選擇模式"
+
+#: scene/resources/navigation_mesh.cpp
+#, fuzzy
+msgid "Partition Type"
 msgstr "更改動畫循環"
 
 #: scene/resources/navigation_mesh.cpp
@@ -26811,8 +27196,13 @@ msgid "Source Group Name"
 msgstr "來源:"
 
 #: scene/resources/navigation_mesh.cpp
-msgid "Agent"
+msgid "Cells"
 msgstr ""
+
+#: scene/resources/navigation_mesh.cpp
+#, fuzzy
+msgid "Agents"
+msgstr "內容："
 
 #: scene/resources/navigation_mesh.cpp
 msgid "Max Climb"
@@ -26823,11 +27213,16 @@ msgid "Max Slope"
 msgstr ""
 
 #: scene/resources/navigation_mesh.cpp
+#, fuzzy
+msgid "Regions"
+msgstr "無干擾模式"
+
+#: scene/resources/navigation_mesh.cpp
 msgid "Merge Size"
 msgstr ""
 
 #: scene/resources/navigation_mesh.cpp
-msgid "Edge"
+msgid "Edges"
 msgstr ""
 
 #: scene/resources/navigation_mesh.cpp
@@ -26838,6 +27233,11 @@ msgstr "錯誤!"
 #: scene/resources/navigation_mesh.cpp
 msgid "Verts Per Poly"
 msgstr ""
+
+#: scene/resources/navigation_mesh.cpp
+#, fuzzy
+msgid "Details"
+msgstr "預設"
 
 #: scene/resources/navigation_mesh.cpp
 msgid "Sample Distance"
@@ -26856,8 +27256,17 @@ msgid "Ledge Spans"
 msgstr ""
 
 #: scene/resources/navigation_mesh.cpp
-msgid "Filter Walkable Low Height Spans"
+msgid "Walkable Low Height Spans"
 msgstr ""
+
+#: scene/resources/navigation_mesh.cpp
+msgid "Baking AABB"
+msgstr ""
+
+#: scene/resources/navigation_mesh.cpp
+#, fuzzy
+msgid "Baking AABB Offset"
+msgstr "移除選項"
 
 #: scene/resources/occluder_shape.cpp
 msgid "Spheres"
@@ -27260,6 +27669,11 @@ msgid "Scenario"
 msgstr "場景"
 
 #: scene/resources/world.cpp scene/resources/world_2d.cpp
+#, fuzzy
+msgid "Navigation Map"
+msgstr "插件"
+
+#: scene/resources/world.cpp scene/resources/world_2d.cpp
 msgid "Direct Space State"
 msgstr ""
 
@@ -27276,6 +27690,26 @@ msgstr "線性"
 #: scene/resources/world.cpp scene/resources/world_2d.cpp
 msgid "Default Angular Damp"
 msgstr ""
+
+#: scene/resources/world.cpp
+#, fuzzy
+msgid "Default Map Up"
+msgstr "預設"
+
+#: scene/resources/world.cpp scene/resources/world_2d.cpp
+#, fuzzy
+msgid "Default Cell Size"
+msgstr "預覽:"
+
+#: scene/resources/world.cpp scene/resources/world_2d.cpp
+#, fuzzy
+msgid "Default Cell Height"
+msgstr "測試"
+
+#: scene/resources/world.cpp scene/resources/world_2d.cpp
+#, fuzzy
+msgid "Default Edge Connection Margin"
+msgstr "編輯連接"
 
 #: scene/resources/world_2d.cpp
 msgid "Canvas"

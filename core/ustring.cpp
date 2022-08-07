@@ -1005,7 +1005,7 @@ Vector<int> String::split_ints_mk(const Vector<String> &p_splitters, bool p_allo
 	return ret;
 }
 
-String String::join(Vector<String> parts) {
+String String::join(const Vector<String> &parts) const {
 	String ret;
 	for (int i = 0; i < parts.size(); ++i) {
 		if (i > 0) {
@@ -1430,7 +1430,7 @@ String String::utf8(const char *p_utf8, int p_len) {
 	return ret;
 };
 
-bool String::parse_utf8(const char *p_utf8, int p_len) {
+bool String::parse_utf8(const char *p_utf8, int p_len, bool p_skip_cr) {
 #define _UNICERROR(m_err) print_line("Unicode error: " + String(m_err));
 
 	if (!p_utf8) {
@@ -1461,6 +1461,11 @@ bool String::parse_utf8(const char *p_utf8, int p_len) {
 		while (ptrtmp != ptrtmp_limit && *ptrtmp) {
 			if (skip == 0) {
 				uint8_t c = *ptrtmp >= 0 ? *ptrtmp : uint8_t(256 + *ptrtmp);
+
+				if (p_skip_cr && c == '\r') {
+					ptrtmp++;
+					continue;
+				}
 
 				/* Determine the number of characters in sequence */
 				if ((c & 0x80) == 0) {
@@ -1518,6 +1523,11 @@ bool String::parse_utf8(const char *p_utf8, int p_len) {
 
 	while (cstr_size) {
 		int len = 0;
+
+		if (p_skip_cr && *p_utf8 == '\r') {
+			p_utf8++;
+			continue;
+		}
 
 		/* Determine the number of characters in sequence */
 		if ((*p_utf8 & 0x80) == 0) {
@@ -1706,9 +1716,7 @@ String::String(const StrRange &p_range) {
 
 int String::hex_to_int(bool p_with_prefix) const {
 	int len = length();
-	if (len == 0 || (p_with_prefix && len < 3)) {
-		return 0;
-	}
+	ERR_FAIL_COND_V_MSG(p_with_prefix ? len < 3 : len == 0, 0, String("Invalid hexadecimal notation length in string ") + (p_with_prefix ? "with" : "without") + " prefix \"" + *this + "\".");
 
 	const CharType *s = ptr();
 
@@ -1719,9 +1727,7 @@ int String::hex_to_int(bool p_with_prefix) const {
 	}
 
 	if (p_with_prefix) {
-		if (s[0] != '0' || s[1] != 'x') {
-			return 0;
-		}
+		ERR_FAIL_COND_V_MSG(s[0] != '0' || LOWERCASE(s[1]) != 'x', 0, "Invalid hexadecimal notation prefix in string \"" + *this + "\".");
 		s += 2;
 	}
 
@@ -1735,7 +1741,7 @@ int String::hex_to_int(bool p_with_prefix) const {
 		} else if (c >= 'a' && c <= 'f') {
 			n = (c - 'a') + 10;
 		} else {
-			return 0;
+			ERR_FAIL_V_MSG(0, "Invalid hexadecimal notation character \"" + chr(*s) + "\" in string \"" + *this + "\".");
 		}
 		// Check for overflow/underflow, with special case to ensure INT32_MIN does not result in error
 		bool overflow = ((hex > INT32_MAX / 16) && (sign == 1 || (sign == -1 && hex != (INT32_MAX >> 4) + 1))) || (sign == -1 && hex == (INT32_MAX >> 4) + 1 && c > '0');
@@ -1749,9 +1755,8 @@ int String::hex_to_int(bool p_with_prefix) const {
 }
 
 int64_t String::hex_to_int64(bool p_with_prefix) const {
-	if (p_with_prefix && length() < 3) {
-		return 0;
-	}
+	int len = length();
+	ERR_FAIL_COND_V_MSG(p_with_prefix ? len < 3 : len == 0, 0, String("Invalid hexadecimal notation length in string ") + (p_with_prefix ? "with" : "without") + " prefix \"" + *this + "\".");
 
 	const CharType *s = ptr();
 
@@ -1762,9 +1767,7 @@ int64_t String::hex_to_int64(bool p_with_prefix) const {
 	}
 
 	if (p_with_prefix) {
-		if (s[0] != '0' || s[1] != 'x') {
-			return 0;
-		}
+		ERR_FAIL_COND_V_MSG(s[0] != '0' || LOWERCASE(s[1]) != 'x', 0, "Invalid hexadecimal notation prefix in string \"" + *this + "\".");
 		s += 2;
 	}
 
@@ -1778,7 +1781,7 @@ int64_t String::hex_to_int64(bool p_with_prefix) const {
 		} else if (c >= 'a' && c <= 'f') {
 			n = (c - 'a') + 10;
 		} else {
-			return 0;
+			ERR_FAIL_V_MSG(0, "Invalid hexadecimal notation character \"" + chr(*s) + "\" in string \"" + *this + "\".");
 		}
 		bool overflow = ((hex > INT64_MAX / 16) && (sign == 1 || (sign == -1 && hex != (INT64_MAX >> 4) + 1))) || (sign == -1 && hex == (INT64_MAX >> 4) + 1 && c > '0');
 		ERR_FAIL_COND_V_MSG(overflow, sign == 1 ? INT64_MAX : INT64_MIN, "Cannot represent " + *this + " as a 64-bit signed integer, since the value is " + (sign == 1 ? "too large." : "too small."));
@@ -1792,9 +1795,7 @@ int64_t String::hex_to_int64(bool p_with_prefix) const {
 
 int64_t String::bin_to_int64(bool p_with_prefix) const {
 	int len = length();
-	if (len == 0 || (p_with_prefix && len < 3)) {
-		return 0;
-	}
+	ERR_FAIL_COND_V_MSG(p_with_prefix ? len < 3 : len == 0, 0, String("Invalid binary notation length in string ") + (p_with_prefix ? "with" : "without") + " prefix \"" + *this + "\".");
 
 	const CharType *s = ptr();
 
@@ -1805,9 +1806,7 @@ int64_t String::bin_to_int64(bool p_with_prefix) const {
 	}
 
 	if (p_with_prefix) {
-		if (s[0] != '0' || s[1] != 'b') {
-			return 0;
-		}
+		ERR_FAIL_COND_V_MSG(s[0] != '0' || LOWERCASE(s[1]) != 'b', 0, "Invalid binary notation prefix in string \"" + *this + "\".");
 		s += 2;
 	}
 
@@ -1819,7 +1818,7 @@ int64_t String::bin_to_int64(bool p_with_prefix) const {
 		if (c == '0' || c == '1') {
 			n = c - '0';
 		} else {
-			return 0;
+			ERR_FAIL_V_MSG(0, "Invalid binary notation character \"" + chr(*s) + "\" in string \"" + *this + "\".");
 		}
 		// Check for overflow/underflow, with special case to ensure INT64_MIN does not result in error
 		bool overflow = ((binary > INT64_MAX / 2) && (sign == 1 || (sign == -1 && binary != (INT64_MAX >> 1) + 1))) || (sign == -1 && binary == (INT64_MAX >> 1) + 1 && c > '0');
@@ -3268,6 +3267,10 @@ String String::rstrip(const String &p_chars) const {
 	return substr(0, end + 1);
 }
 
+bool String::is_network_share_path() const {
+	return begins_with("//") || begins_with("\\\\");
+}
+
 String String::simplify_path() const {
 	String s = *this;
 	String drive;
@@ -3280,6 +3283,9 @@ String String::simplify_path() const {
 	} else if (s.begins_with("user://")) {
 		drive = "user://";
 		s = s.substr(7, s.length());
+	} else if (is_network_share_path()) {
+		drive = s.substr(0, 2);
+		s = s.substr(2, s.length() - 2);
 	} else if (s.begins_with("/") || s.begins_with("\\")) {
 		drive = s.substr(0, 1);
 		s = s.substr(1, s.length() - 1);
@@ -4017,13 +4023,13 @@ bool String::is_rel_path() const {
 String String::get_base_dir() const {
 	int end = 0;
 
-	// url scheme style base
+	// URL scheme style base.
 	int basepos = find("://");
 	if (basepos != -1) {
 		end = basepos + 3;
 	}
 
-	// windows top level directory base
+	// Windows top level directory base.
 	if (end == 0) {
 		basepos = find(":/");
 		if (basepos == -1) {
@@ -4034,7 +4040,24 @@ String String::get_base_dir() const {
 		}
 	}
 
-	// unix root directory base
+	// Windows UNC network share path.
+	if (end == 0) {
+		if (is_network_share_path()) {
+			basepos = find("/", 2);
+			if (basepos == -1) {
+				basepos = find("\\", 2);
+			}
+			int servpos = find("/", basepos + 1);
+			if (servpos == -1) {
+				servpos = find("\\", basepos + 1);
+			}
+			if (servpos != -1) {
+				end = servpos + 1;
+			}
+		}
+	}
+
+	// Unix root directory base.
 	if (end == 0) {
 		if (begins_with("/")) {
 			end = 1;

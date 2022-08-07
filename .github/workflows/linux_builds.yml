@@ -31,16 +31,16 @@ jobs:
             cache-name: linux-editor
             target: release_debug
             tools: true
-            sconsflags: ''
+            sconsflags: ""
             bin: "./bin/godot.x11.tools.64"
             build-mono: false
             artifact: true
 
-          - name: Editor and sanitizers (target=debug, tools=yes, use_asan=yes, use_ubsan=yes)
+          - name: Editor and sanitizers (target=debug, tools=yes, use_asan=yes, use_ubsan=yes, linker=gold)
             cache-name: linux-editor-sanitizers
             target: debug
             tools: true
-            sconsflags: use_asan=yes use_ubsan=yes
+            sconsflags: use_asan=yes use_ubsan=yes linker=gold
             test: true
             bin: "./bin/godot.x11.tools.64s"
             build-mono: false
@@ -59,7 +59,7 @@ jobs:
             cache-name: linux-template
             target: release
             tools: false
-            sconsflags: ''
+            sconsflags: ""
             build-mono: false
             artifact: true
 

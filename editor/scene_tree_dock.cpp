@@ -63,7 +63,7 @@ void SceneTreeDock::_input(Ref<InputEvent> p_event) {
 	Ref<InputEventMouseButton> mb = p_event;
 
 	if (mb.is_valid() && (mb->get_button_index() == BUTTON_LEFT || mb->get_button_index() == BUTTON_RIGHT)) {
-		if (mb->is_pressed() && scene_tree->get_rect().has_point(mb->get_position())) {
+		if (mb->is_pressed() && scene_tree->get_rect().has_point(scene_tree->get_local_mouse_position())) {
 			tree_clicked = true;
 		} else if (!mb->is_pressed()) {
 			tree_clicked = false;
@@ -2348,7 +2348,7 @@ void SceneTreeDock::_create() {
 		_do_reparent(last_created, -1, nodes, true);
 	}
 
-	scene_tree->get_scene_tree()->grab_focus();
+	scene_tree->get_scene_tree()->call_deferred("grab_focus");
 }
 
 void SceneTreeDock::replace_node(Node *p_node, Node *p_by_node, bool p_keep_properties, bool p_remove_old) {

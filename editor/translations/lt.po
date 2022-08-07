@@ -220,9 +220,10 @@ msgid "Data"
 msgstr ""
 
 #: core/io/file_access_network.cpp core/register_core_types.cpp
-#: editor/editor_settings.cpp main/main.cpp
+#: editor/editor_file_dialog.cpp editor/editor_settings.cpp main/main.cpp
 #: modules/gdscript/language_server/gdscript_language_server.cpp
 #: modules/webrtc/webrtc_data_channel.h modules/websocket/websocket_macros.h
+#: scene/gui/file_dialog.cpp
 #, fuzzy
 msgid "Network"
 msgstr "Importuoti iš Nodo:"
@@ -379,6 +380,15 @@ msgstr ""
 msgid "Max Size (KB)"
 msgstr ""
 
+#: core/os/input.cpp
+#, fuzzy
+msgid "Mouse Mode"
+msgstr "TimeScale Nodas"
+
+#: core/os/input.cpp
+msgid "Use Accumulated Input"
+msgstr ""
+
 #: core/os/input_event.cpp editor/project_settings_editor.cpp
 #: servers/audio_server.cpp
 msgid "Device"
@@ -406,6 +416,11 @@ msgstr ""
 #, fuzzy
 msgid "Command"
 msgstr "Bendruomenė"
+
+#: core/os/input_event.cpp
+#, fuzzy
+msgid "Physical"
+msgstr "Fizikos Kadro %"
 
 #: core/os/input_event.cpp scene/2d/touch_screen_button.cpp
 #: scene/gui/base_button.cpp scene/gui/texture_button.cpp
@@ -459,6 +474,10 @@ msgstr ""
 #, fuzzy
 msgid "Pressure"
 msgstr "Atstatyti Priartinimą"
+
+#: core/os/input_event.cpp
+msgid "Pen Inverted"
+msgstr ""
 
 #: core/os/input_event.cpp
 msgid "Relative"
@@ -572,7 +591,8 @@ msgstr "Aprašymas:"
 
 #: core/project_settings.cpp editor/editor_node.cpp editor/editor_settings.cpp
 #: editor/plugins/script_editor_plugin.cpp editor/project_manager.cpp
-#: main/main.cpp
+#: main/main.cpp platform/android/export/export_plugin.cpp
+#: platform/javascript/export/export.cpp
 msgid "Run"
 msgstr ""
 
@@ -657,6 +677,11 @@ msgid "Main Run Args"
 msgstr ""
 
 #: core/project_settings.cpp
+#, fuzzy
+msgid "Scene Naming"
+msgstr "Kelias iki Scenos:"
+
+#: core/project_settings.cpp
 msgid "Search In File Extensions"
 msgstr ""
 
@@ -664,20 +689,15 @@ msgstr ""
 msgid "Script Templates Search Path"
 msgstr ""
 
-#: core/project_settings.cpp editor/editor_node.cpp
-#: editor/plugins/version_control_editor_plugin.cpp
+#: core/project_settings.cpp
 #, fuzzy
-msgid "Version Control"
+msgid "Version Control Autoload On Startup"
 msgstr "Versija:"
 
 #: core/project_settings.cpp
-msgid "Autoload On Startup"
-msgstr ""
-
-#: core/project_settings.cpp
 #, fuzzy
-msgid "Plugin Name"
-msgstr "Priedai"
+msgid "Version Control Plugin Name"
+msgstr "Versija:"
 
 #: core/project_settings.cpp scene/2d/collision_object_2d.cpp
 #: scene/3d/collision_object.cpp scene/gui/control.cpp
@@ -788,7 +808,8 @@ msgid "Quality"
 msgstr ""
 
 #: core/project_settings.cpp scene/gui/file_dialog.cpp
-#: scene/main/scene_tree.cpp servers/visual_server.cpp
+#: scene/main/scene_tree.cpp scene/resources/navigation_mesh.cpp
+#: servers/visual_server.cpp
 #, fuzzy
 msgid "Filters"
 msgstr "Filtrai..."
@@ -2157,14 +2178,15 @@ msgstr "Mėgstamiausi:"
 msgid "Recent:"
 msgstr "Naujausi:"
 
-#: editor/create_dialog.cpp editor/plugins/script_editor_plugin.cpp
-#: editor/property_selector.cpp editor/quick_open.cpp editor/rename_dialog.cpp
+#: editor/create_dialog.cpp editor/editor_quick_open.cpp
+#: editor/plugins/script_editor_plugin.cpp editor/property_selector.cpp
+#: editor/rename_dialog.cpp
 #: modules/visual_script/visual_script_property_selector.cpp
 msgid "Search:"
 msgstr "Ieškoti:"
 
-#: editor/create_dialog.cpp editor/plugins/script_editor_plugin.cpp
-#: editor/property_selector.cpp editor/quick_open.cpp
+#: editor/create_dialog.cpp editor/editor_quick_open.cpp
+#: editor/plugins/script_editor_plugin.cpp editor/property_selector.cpp
 #: modules/visual_script/visual_script_property_selector.cpp
 msgid "Matches:"
 msgstr ""
@@ -2220,8 +2242,8 @@ msgstr ""
 
 #: editor/dependency_editor.cpp editor/editor_file_dialog.cpp
 #: editor/editor_help_search.cpp editor/editor_node.cpp
-#: editor/filesystem_dock.cpp editor/plugins/script_editor_plugin.cpp
-#: editor/property_selector.cpp editor/quick_open.cpp
+#: editor/editor_quick_open.cpp editor/filesystem_dock.cpp
+#: editor/plugins/script_editor_plugin.cpp editor/property_selector.cpp
 #: editor/script_create_dialog.cpp
 #: modules/visual_script/visual_script_property_selector.cpp
 #: scene/gui/file_dialog.cpp
@@ -2229,7 +2251,7 @@ msgid "Open"
 msgstr "Atidaryti"
 
 #: editor/dependency_editor.cpp
-msgid "Owners Of:"
+msgid "Owners of: %s (Total: %d)"
 msgstr ""
 
 #: editor/dependency_editor.cpp
@@ -2523,7 +2545,7 @@ msgid "Bus Options"
 msgstr "Aprašymas:"
 
 #: editor/editor_audio_buses.cpp editor/filesystem_dock.cpp
-#: editor/scene_tree_dock.cpp
+#: editor/project_export.cpp editor/scene_tree_dock.cpp
 msgid "Duplicate"
 msgstr "Duplikuoti"
 
@@ -2780,6 +2802,23 @@ msgid "Choose"
 msgstr "Pasirinkite"
 
 #: editor/editor_export.cpp
+msgid "Project export for platform:"
+msgstr ""
+
+#: editor/editor_export.cpp
+#, fuzzy
+msgid "Completed with warnings."
+msgstr "Panaikinti pasirinkimą"
+
+#: editor/editor_export.cpp
+msgid "Completed successfully."
+msgstr ""
+
+#: editor/editor_export.cpp
+msgid "Failed."
+msgstr ""
+
+#: editor/editor_export.cpp
 msgid "Storing File:"
 msgstr ""
 
@@ -2789,6 +2828,28 @@ msgstr ""
 
 #: editor/editor_export.cpp
 msgid "Packing"
+msgstr ""
+
+#: editor/editor_export.cpp
+msgid "Save PCK"
+msgstr ""
+
+#: editor/editor_export.cpp
+#, fuzzy
+msgid "Cannot create file \"%s\"."
+msgstr "Nepavyko pašalinti laikino failo:"
+
+#: editor/editor_export.cpp
+#, fuzzy
+msgid "Failed to export project files."
+msgstr "Filtrai..."
+
+#: editor/editor_export.cpp
+msgid "Can't open file to read from path \"%s\"."
+msgstr ""
+
+#: editor/editor_export.cpp
+msgid "Save ZIP"
 msgstr ""
 
 #: editor/editor_export.cpp
@@ -2895,8 +2956,27 @@ msgstr ""
 msgid "Custom release template not found."
 msgstr ""
 
+#: editor/editor_export.cpp
+#, fuzzy
+msgid "Prepare Template"
+msgstr "Pasirinkite Nodus, kuriuos norite importuoti"
+
+#: editor/editor_export.cpp platform/osx/export/export.cpp
+msgid "The given export path doesn't exist."
+msgstr ""
+
 #: editor/editor_export.cpp platform/javascript/export/export.cpp
-msgid "Template file not found:"
+#, fuzzy
+msgid "Template file not found: \"%s\"."
+msgstr "Animacijos Nodas"
+
+#: editor/editor_export.cpp
+msgid "Failed to copy export template."
+msgstr ""
+
+#: editor/editor_export.cpp platform/windows/export/export.cpp
+#: platform/x11/export/export.cpp
+msgid "PCK Embedding"
 msgstr ""
 
 #: editor/editor_export.cpp
@@ -3080,9 +3160,9 @@ msgid "Import"
 msgstr ""
 
 #: editor/editor_feature_profile.cpp editor/project_export.cpp
-#: platform/android/export/export.cpp platform/javascript/export/export.cpp
-#: platform/osx/export/export.cpp platform/uwp/export/export.cpp
-#: platform/windows/export/export.cpp
+#: platform/android/export/export.cpp platform/android/export/export_plugin.cpp
+#: platform/javascript/export/export.cpp platform/osx/export/export.cpp
+#: platform/uwp/export/export.cpp platform/windows/export/export.cpp
 msgid "Export"
 msgstr ""
 
@@ -4194,15 +4274,6 @@ msgid ""
 "Unable to write to file '%s', file in use, locked or lacking permissions."
 msgstr ""
 
-#: editor/editor_node.cpp editor/plugins/theme_editor_plugin.cpp
-msgid "Scene"
-msgstr ""
-
-#: editor/editor_node.cpp
-#, fuzzy
-msgid "Scene Naming"
-msgstr "Kelias iki Scenos:"
-
 #: editor/editor_node.cpp editor/editor_settings.cpp editor/scene_tree_dock.cpp
 #: servers/arvr/arvr_interface.cpp
 msgid "Interface"
@@ -4325,6 +4396,11 @@ msgstr ""
 
 #: editor/editor_node.cpp editor/plugins/version_control_editor_plugin.cpp
 #, fuzzy
+msgid "Version Control"
+msgstr "Versija:"
+
+#: editor/editor_node.cpp editor/plugins/version_control_editor_plugin.cpp
+#, fuzzy
 msgid "Username"
 msgstr "Naujas pavadinimas:"
 
@@ -4350,6 +4426,10 @@ msgstr ""
 
 #: editor/editor_node.cpp
 msgid "Add a new scene."
+msgstr ""
+
+#: editor/editor_node.cpp editor/plugins/theme_editor_plugin.cpp
+msgid "Scene"
 msgstr ""
 
 #: editor/editor_node.cpp
@@ -5105,6 +5185,11 @@ msgid ""
 "as runnable."
 msgstr ""
 
+#: editor/editor_run_native.cpp
+#, fuzzy
+msgid "Project Run"
+msgstr "Aprašymas:"
+
 #: editor/editor_run_script.cpp
 msgid "Write your logic in the _run() method."
 msgstr ""
@@ -5371,7 +5456,9 @@ msgid "Draw Spaces"
 msgstr ""
 
 #: editor/editor_settings.cpp editor/plugins/spatial_editor_plugin.cpp
-#: editor/plugins/tile_set_editor_plugin.cpp scene/main/scene_tree.cpp
+#: editor/plugins/tile_set_editor_plugin.cpp scene/2d/tile_map.cpp
+#: scene/main/scene_tree.cpp scene/resources/world.cpp
+#: scene/resources/world_2d.cpp
 #, fuzzy
 msgid "Navigation"
 msgstr "Animacijos Nodas"
@@ -5394,6 +5481,15 @@ msgstr ""
 
 #: editor/editor_settings.cpp
 msgid "Mouse Extra Buttons Navigate History"
+msgstr ""
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Drag And Drop Selection"
+msgstr "Visas Pasirinkimas"
+
+#: editor/editor_settings.cpp
+msgid "Stay In Script Editor On Node Selected"
 msgstr ""
 
 #: editor/editor_settings.cpp
@@ -6831,7 +6927,7 @@ msgstr ""
 
 #: editor/import/resource_importer_layered_texture.cpp
 #: editor/import/resource_importer_texture.cpp scene/2d/light_2d.cpp
-#: scene/gui/control.cpp scene/resources/navigation_mesh.cpp
+#: scene/gui/control.cpp
 #, fuzzy
 msgid "Filter"
 msgstr "Filtrai..."
@@ -7114,6 +7210,18 @@ msgstr ""
 
 #: editor/import/resource_importer_scene.cpp
 msgid "Saving..."
+msgstr ""
+
+#: editor/import/resource_importer_texture.cpp
+msgid ""
+"%s: Texture detected as used as a normal map in 3D. Enabling red-green "
+"texture compression to reduce memory usage (blue channel is discarded)."
+msgstr ""
+
+#: editor/import/resource_importer_texture.cpp
+msgid ""
+"%s: Texture detected as used in 3D. Enabling filter, repeat, mipmap "
+"generation and VRAM texture compression."
 msgstr ""
 
 #: editor/import/resource_importer_texture.cpp
@@ -7806,7 +7914,16 @@ msgid "New Anim"
 msgstr ""
 
 #: editor/plugins/animation_player_editor_plugin.cpp
+msgid "Create New Animation"
+msgstr ""
+
+#: editor/plugins/animation_player_editor_plugin.cpp
 msgid "Change Animation Name:"
+msgstr ""
+
+#: editor/plugins/animation_player_editor_plugin.cpp
+#: editor/plugins/sprite_frames_editor_plugin.cpp
+msgid "Rename Animation"
 msgstr ""
 
 #: editor/plugins/animation_player_editor_plugin.cpp
@@ -7825,11 +7942,6 @@ msgstr ""
 
 #: editor/plugins/animation_player_editor_plugin.cpp
 msgid "Animation name already exists!"
-msgstr ""
-
-#: editor/plugins/animation_player_editor_plugin.cpp
-#: editor/plugins/sprite_frames_editor_plugin.cpp
-msgid "Rename Animation"
 msgstr ""
 
 #: editor/plugins/animation_player_editor_plugin.cpp
@@ -7976,10 +8088,6 @@ msgstr ""
 #, fuzzy
 msgid "Pin AnimationPlayer"
 msgstr "Animacija"
-
-#: editor/plugins/animation_player_editor_plugin.cpp
-msgid "Create New Animation"
-msgstr ""
 
 #: editor/plugins/animation_player_editor_plugin.cpp
 msgid "Animation Name:"
@@ -10102,6 +10210,7 @@ msgid "Points"
 msgstr ""
 
 #: editor/plugins/polygon_2d_editor_plugin.cpp scene/2d/polygon_2d.cpp
+#: scene/resources/navigation_mesh.cpp
 #, fuzzy
 msgid "Polygons"
 msgstr "Priedai"
@@ -11501,8 +11610,9 @@ msgid "Invalid geometry, can't replace by mesh."
 msgstr ""
 
 #: editor/plugins/sprite_editor_plugin.cpp
-msgid "Convert to Mesh2D"
-msgstr ""
+#, fuzzy
+msgid "Convert to MeshInstance2D"
+msgstr "Keisti Poligono Skalę"
 
 #: editor/plugins/sprite_editor_plugin.cpp
 msgid "Invalid geometry, can't create polygon."
@@ -11610,6 +11720,11 @@ msgstr "Animacija"
 #, fuzzy
 msgid "New Animation"
 msgstr "Animacija"
+
+#: editor/plugins/sprite_frames_editor_plugin.cpp
+#, fuzzy
+msgid "Filter animations"
+msgstr "Filtrai..."
 
 #: editor/plugins/sprite_frames_editor_plugin.cpp
 msgid "Speed:"
@@ -12517,8 +12632,7 @@ msgid "Select the previous shape, subtile, or Tile."
 msgstr ""
 
 #: editor/plugins/tile_set_editor_plugin.cpp scene/2d/sprite.cpp
-#: scene/3d/sprite_3d.cpp scene/resources/navigation_mesh.cpp
-#: scene/resources/texture.cpp
+#: scene/3d/sprite_3d.cpp scene/resources/texture.cpp
 #, fuzzy
 msgid "Region"
 msgstr "Animacijos Nodas"
@@ -14016,28 +14130,7 @@ msgid "Delete preset '%s'?"
 msgstr ""
 
 #: editor/project_export.cpp
-msgid ""
-"Failed to export the project for platform '%s'.\n"
-"Export templates seem to be missing or invalid."
-msgstr ""
-
-#: editor/project_export.cpp
-msgid ""
-"Failed to export the project for platform '%s'.\n"
-"This might be due to a configuration issue in the export preset or your "
-"export settings."
-msgstr ""
-
-#: editor/project_export.cpp
 msgid "Exporting All"
-msgstr ""
-
-#: editor/project_export.cpp
-msgid "The given export path doesn't exist:"
-msgstr ""
-
-#: editor/project_export.cpp
-msgid "Export templates for this platform are missing/corrupted:"
 msgstr ""
 
 #: editor/project_export.cpp
@@ -14178,6 +14271,11 @@ msgstr "Redaguoti Filtrus"
 #: editor/project_export.cpp
 msgid "Export templates for this platform are missing:"
 msgstr ""
+
+#: editor/project_export.cpp
+#, fuzzy
+msgid "Project Export"
+msgstr "Aprašymas:"
 
 #: editor/project_export.cpp
 msgid "Manage Export Templates"
@@ -16495,7 +16593,7 @@ msgstr ""
 
 #: modules/csg/csg_shape.cpp scene/2d/collision_polygon_2d.cpp
 #: scene/2d/light_occluder_2d.cpp scene/2d/polygon_2d.cpp
-#: scene/3d/collision_polygon.cpp scene/resources/navigation_mesh.cpp
+#: scene/3d/collision_polygon.cpp
 #, fuzzy
 msgid "Polygon"
 msgstr "Priedai"
@@ -17088,7 +17186,6 @@ msgid "Use In Baked Light"
 msgstr ""
 
 #: modules/gridmap/grid_map.cpp scene/2d/tile_map.cpp
-#: scene/resources/navigation_mesh.cpp
 msgid "Cell"
 msgstr ""
 
@@ -17117,6 +17214,19 @@ msgstr "Ištrinti Efektą"
 #: scene/resources/material.cpp
 msgid "Mask"
 msgstr ""
+
+#: modules/gridmap/grid_map.cpp scene/2d/tile_map.cpp
+#, fuzzy
+msgid "Bake Navigation"
+msgstr "Animacijos Nodas"
+
+#: modules/gridmap/grid_map.cpp scene/2d/navigation_2d.cpp
+#: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_polygon.cpp
+#: scene/2d/tile_map.cpp scene/3d/navigation.cpp scene/3d/navigation_agent.cpp
+#: scene/3d/navigation_mesh_instance.cpp
+#, fuzzy
+msgid "Navigation Layers"
+msgstr "Animacijos Nodas"
 
 #: modules/gridmap/grid_map_editor_plugin.cpp
 msgid "Next Plane"
@@ -18418,6 +18528,11 @@ msgid "The package must have at least one '.' separator."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
+#, fuzzy
+msgid "Custom Build"
+msgstr "Transition Nodas"
+
+#: platform/android/export/export_plugin.cpp
 msgid "Use Custom Build"
 msgstr ""
 
@@ -18425,6 +18540,16 @@ msgstr ""
 #, fuzzy
 msgid "Export Format"
 msgstr "Importuoti iš Nodo:"
+
+#: platform/android/export/export_plugin.cpp
+#, fuzzy
+msgid "Min SDK"
+msgstr "Atidaryti Skriptų Editorių"
+
+#: platform/android/export/export_plugin.cpp
+#, fuzzy
+msgid "Target SDK"
+msgstr "TimeScale Nodas"
 
 #: platform/android/export/export_plugin.cpp platform/iphone/export/export.cpp
 msgid "Architectures"
@@ -18461,16 +18586,6 @@ msgstr ""
 #: platform/android/export/export_plugin.cpp
 msgid "Code"
 msgstr ""
-
-#: platform/android/export/export_plugin.cpp
-#, fuzzy
-msgid "Min SDK"
-msgstr "Atidaryti Skriptų Editorių"
-
-#: platform/android/export/export_plugin.cpp
-#, fuzzy
-msgid "Target SDK"
-msgstr "TimeScale Nodas"
 
 #: platform/android/export/export_plugin.cpp platform/uwp/export/export.cpp
 msgid "Package"
@@ -18631,10 +18746,6 @@ msgid "Could not execute on device."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
-msgid "Unable to find the 'apksigner' tool."
-msgstr ""
-
-#: platform/android/export/export_plugin.cpp
 msgid ""
 "Android build template not installed in the project. Install it from the "
 "Project menu."
@@ -18712,12 +18823,12 @@ msgstr ""
 
 #: platform/android/export/export_plugin.cpp
 msgid ""
-"\"Hand Tracking\" is only valid when \"Xr Mode\" is \"Oculus Mobile VrApi\" "
+"\"Hand Tracking\" is only valid when \"XR Mode\" is \"Oculus Mobile VrApi\" "
 "or \"OpenXR\"."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
-msgid "\"Passthrough\" is only valid when \"Xr Mode\" is \"OpenXR\"."
+msgid "\"Passthrough\" is only valid when \"XR Mode\" is \"OpenXR\"."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
@@ -18726,25 +18837,49 @@ msgstr ""
 
 #: platform/android/export/export_plugin.cpp
 msgid ""
-"Changing the \"Min Sdk\" is only valid when \"Use Custom Build\" is enabled."
+"\"Min SDK\" can only be overridden when \"Use Custom Build\" is enabled."
+msgstr ""
+
+#: platform/android/export/export_plugin.cpp
+msgid "\"Min SDK\" should be a valid integer, but got \"%s\" which is invalid."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
 msgid ""
-"Changing the \"Target Sdk\" is only valid when \"Use Custom Build\" is "
-"enabled."
-msgstr ""
-
-#: platform/android/export/export_plugin.cpp
-msgid "\"Target Sdk\" version must be greater or equal to \"Min Sdk\" version."
+"\"Min SDK\" cannot be lower than %d, which is the version needed by the "
+"Godot library."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
 msgid ""
-"'apksigner' could not be found.\n"
-"Please check the command is available in the Android SDK build-tools "
-"directory.\n"
-"The resulting %s is unsigned."
+"\"Target SDK\" can only be overridden when \"Use Custom Build\" is enabled."
+msgstr ""
+
+#: platform/android/export/export_plugin.cpp
+msgid ""
+"\"Target SDK\" should be a valid integer, but got \"%s\" which is invalid."
+msgstr ""
+
+#: platform/android/export/export_plugin.cpp
+msgid ""
+"\"Target SDK\" %d is higher than the default version %d. This may work, but "
+"wasn't tested and may be unstable."
+msgstr ""
+
+#: platform/android/export/export_plugin.cpp
+msgid "\"Target SDK\" version must be greater or equal to \"Min SDK\" version."
+msgstr ""
+
+#: platform/android/export/export_plugin.cpp platform/osx/export/export.cpp
+#: platform/windows/export/export.cpp
+#, fuzzy
+msgid "Code Signing"
+msgstr "Signalai"
+
+#: platform/android/export/export_plugin.cpp
+msgid ""
+"'apksigner' could not be found. Please check that the command is available "
+"in the Android SDK build-tools directory. The resulting %s is unsigned."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
@@ -18757,6 +18892,10 @@ msgstr ""
 
 #: platform/android/export/export_plugin.cpp
 msgid "Could not find keystore, unable to export."
+msgstr ""
+
+#: platform/android/export/export_plugin.cpp
+msgid "Could not start apksigner executable."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
@@ -18788,7 +18927,7 @@ msgid "Invalid filename! Android APK requires the *.apk extension."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
-msgid "Unsupported export format!\n"
+msgid "Unsupported export format!"
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
@@ -18799,19 +18938,17 @@ msgstr ""
 
 #: platform/android/export/export_plugin.cpp
 msgid ""
-"Android build version mismatch:\n"
-"   Template installed: %s\n"
-"   Godot Version: %s\n"
+"Android build version mismatch: Template installed: %s, Godot version: %s. "
 "Please reinstall Android build template from 'Project' menu."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
 msgid ""
-"Unable to overwrite res://android/build/res/*.xml files with project name"
+"Unable to overwrite res://android/build/res/*.xml files with project name."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
-msgid "Could not export project files to gradle project\n"
+msgid "Could not export project files to gradle project."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
@@ -18824,7 +18961,7 @@ msgstr ""
 
 #: platform/android/export/export_plugin.cpp
 msgid ""
-"Building of Android project failed, check output for the error.\n"
+"Building of Android project failed, check output for the error. "
 "Alternatively visit docs.godotengine.org for Android build documentation."
 msgstr ""
 
@@ -18840,7 +18977,7 @@ msgstr ""
 
 #: platform/android/export/export_plugin.cpp
 #, fuzzy
-msgid "Package not found: %s"
+msgid "Package not found: \"%s\"."
 msgstr "Animacijos Nodas"
 
 #: platform/android/export/export_plugin.cpp
@@ -18848,15 +18985,12 @@ msgid "Creating APK..."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
-msgid ""
-"Could not find template APK to export:\n"
-"%s"
+msgid "Could not find template APK to export: \"%s\"."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
 msgid ""
-"Missing libraries in the export template for the selected architectures: "
-"%s.\n"
+"Missing libraries in the export template for the selected architectures: %s. "
 "Please build a template with all required libraries, or uncheck the missing "
 "architectures in the export preset."
 msgstr ""
@@ -18867,8 +19001,9 @@ msgid "Adding files..."
 msgstr "Filtrai..."
 
 #: platform/android/export/export_plugin.cpp
-msgid "Could not export project files"
-msgstr ""
+#, fuzzy
+msgid "Could not export project files."
+msgstr "Pradėti Profiliavimą"
 
 #: platform/android/export/export_plugin.cpp
 msgid "Aligning APK..."
@@ -19108,6 +19243,15 @@ msgstr "Transition Nodas"
 msgid "Custom BG Color"
 msgstr "Transition Nodas"
 
+#: platform/iphone/export/export.cpp platform/javascript/export/export.cpp
+#: platform/osx/export/export.cpp
+msgid "Prepare Templates"
+msgstr ""
+
+#: platform/iphone/export/export.cpp platform/osx/export/export.cpp
+msgid "Export template not found."
+msgstr ""
+
 #: platform/iphone/export/export.cpp
 msgid "App Store Team ID not specified - cannot configure the project."
 msgstr ""
@@ -19130,21 +19274,32 @@ msgid "Run exported HTML in the system's default browser."
 msgstr ""
 
 #: platform/javascript/export/export.cpp
-msgid "Could not open template for export:"
-msgstr ""
-
-#: platform/javascript/export/export.cpp
-msgid "Invalid export template:"
-msgstr ""
-
-#: platform/javascript/export/export.cpp
-msgid "Could not write file:"
+msgid "Could not open template for export: \"%s\"."
 msgstr ""
 
 #: platform/javascript/export/export.cpp
 #, fuzzy
-msgid "Could not read file:"
+msgid "Invalid export template: \"%s\"."
+msgstr "Netinkamas šrifto dydis."
+
+#: platform/javascript/export/export.cpp
+#, fuzzy
+msgid "Could not write file: \"%s\"."
 msgstr "Pradėti Profiliavimą"
+
+#: platform/javascript/export/export.cpp platform/osx/export/export.cpp
+#, fuzzy
+msgid "Icon Creation"
+msgstr "Prijungti"
+
+#: platform/javascript/export/export.cpp
+#, fuzzy
+msgid "Could not read file: \"%s\"."
+msgstr "Pradėti Profiliavimą"
+
+#: platform/javascript/export/export.cpp
+msgid "PWA"
+msgstr ""
 
 #: platform/javascript/export/export.cpp
 #, fuzzy
@@ -19221,16 +19376,18 @@ msgid "Icon 512 X 512"
 msgstr ""
 
 #: platform/javascript/export/export.cpp
-msgid "Could not read HTML shell:"
+#, fuzzy
+msgid "Could not read HTML shell: \"%s\"."
+msgstr "Pradėti Profiliavimą"
+
+#: platform/javascript/export/export.cpp
+msgid "Could not create HTTP server directory: %s."
 msgstr ""
 
 #: platform/javascript/export/export.cpp
-msgid "Could not create HTTP server directory:"
-msgstr ""
-
-#: platform/javascript/export/export.cpp
-msgid "Error starting HTTP server:"
-msgstr ""
+#, fuzzy
+msgid "Error starting HTTP server: %d."
+msgstr "Įvyko klaida kraunant šriftą."
 
 #: platform/javascript/export/export.cpp
 msgid "Web"
@@ -19522,9 +19679,27 @@ msgid "Apple Team ID"
 msgstr ""
 
 #: platform/osx/export/export.cpp
+#, fuzzy
+msgid "Could not open icon file \"%s\"."
+msgstr "Pradėti Profiliavimą"
+
+#: platform/osx/export/export.cpp
+msgid "Could not start xcrun executable."
+msgstr ""
+
+#: platform/osx/export/export.cpp
+#, fuzzy
+msgid "Notarization failed."
+msgstr "Animacijos Nodas"
+
+#: platform/osx/export/export.cpp
+msgid "Notarization request UUID: \"%s\""
+msgstr ""
+
+#: platform/osx/export/export.cpp
 msgid ""
-"Note: The notarization process generally takes less than an hour. When the "
-"process is completed, you'll receive an email."
+"The notarization process generally takes less than an hour. When the process "
+"is completed, you'll receive an email."
 msgstr ""
 
 #: platform/osx/export/export.cpp
@@ -19540,17 +19715,71 @@ msgid ""
 msgstr ""
 
 #: platform/osx/export/export.cpp
+msgid "Timestamping is not compatible with ad-hoc signature, and was disabled!"
+msgstr ""
+
+#: platform/osx/export/export.cpp
+msgid ""
+"Hardened Runtime is not compatible with ad-hoc signature, and was disabled!"
+msgstr ""
+
+#: platform/osx/export/export.cpp
+msgid "Built-in CodeSign failed with error \"%s\"."
+msgstr ""
+
+#: platform/osx/export/export.cpp
+msgid "Built-in CodeSign require regex module."
+msgstr ""
+
+#: platform/osx/export/export.cpp
+msgid ""
+"Could not start codesign executable, make sure Xcode command line tools are "
+"installed."
+msgstr ""
+
+#: platform/osx/export/export.cpp platform/windows/export/export.cpp
 #, fuzzy
 msgid "No identity found."
 msgstr "Konstanta"
+
+#: platform/osx/export/export.cpp
+#, fuzzy
+msgid "Cannot sign file %s."
+msgstr "Įvyko klaida kraunant šriftą."
+
+#: platform/osx/export/export.cpp
+msgid "Relative symlinks are not supported, exported \"%s\" might be broken!"
+msgstr ""
+
+#: platform/osx/export/export.cpp
+#, fuzzy
+msgid "DMG Creation"
+msgstr "Aprašymas:"
+
+#: platform/osx/export/export.cpp
+msgid "Could not start hdiutil executable."
+msgstr ""
+
+#: platform/osx/export/export.cpp
+msgid "`hdiutil create` failed - file exists."
+msgstr ""
+
+#: platform/osx/export/export.cpp
+msgid "`hdiutil create` failed."
+msgstr ""
 
 #: platform/osx/export/export.cpp
 msgid "Creating app bundle"
 msgstr ""
 
 #: platform/osx/export/export.cpp
-msgid "Could not find template app to export:"
+msgid "Could not find template app to export: \"%s\"."
 msgstr ""
+
+#: platform/osx/export/export.cpp
+#, fuzzy
+msgid "Invalid export format."
+msgstr "Netinkamas šrifto dydis."
 
 #: platform/osx/export/export.cpp
 msgid ""
@@ -19560,7 +19789,7 @@ msgstr ""
 
 #: platform/osx/export/export.cpp
 msgid ""
-"Requested template binary '%s' not found. It might be missing from your "
+"Requested template binary \"%s\" not found. It might be missing from your "
 "template archive."
 msgstr ""
 
@@ -19598,6 +19827,15 @@ msgstr ""
 
 #: platform/osx/export/export.cpp
 msgid "Sending archive for notarization"
+msgstr ""
+
+#: platform/osx/export/export.cpp
+#, fuzzy
+msgid "ZIP Creation"
+msgstr "Aprašymas:"
+
+#: platform/osx/export/export.cpp
+msgid "Could not open file to read from path \"%s\"."
 msgstr ""
 
 #: platform/osx/export/export.cpp
@@ -19913,6 +20151,11 @@ msgid "Debug Algorithm"
 msgstr ""
 
 #: platform/windows/export/export.cpp
+#, fuzzy
+msgid "Failed to rename temporary file \"%s\"."
+msgstr "Nepavyko pašalinti laikino failo:"
+
+#: platform/windows/export/export.cpp
 msgid "Identity Type"
 msgstr ""
 
@@ -19959,6 +20202,66 @@ msgid "Trademarks"
 msgstr ""
 
 #: platform/windows/export/export.cpp
+#, fuzzy
+msgid "Resources Modification"
+msgstr "Konstanta"
+
+#: platform/windows/export/export.cpp
+msgid "Could not find rcedit executable at \"%s\"."
+msgstr ""
+
+#: platform/windows/export/export.cpp
+msgid "Could not find wine executable at \"%s\"."
+msgstr ""
+
+#: platform/windows/export/export.cpp
+msgid ""
+"Could not start rcedit executable. Configure rcedit path in the Editor "
+"Settings (Export > Windows > Rcedit), or disable \"Application > Modify "
+"Resources\" in the export preset."
+msgstr ""
+
+#: platform/windows/export/export.cpp
+#, fuzzy
+msgid "rcedit failed to modify executable: %s."
+msgstr "Netinkamas šrifto dydis."
+
+#: platform/windows/export/export.cpp
+msgid "Could not find signtool executable at \"%s\"."
+msgstr ""
+
+#: platform/windows/export/export.cpp
+msgid "Could not find osslsigncode executable at \"%s\"."
+msgstr ""
+
+#: platform/windows/export/export.cpp
+#, fuzzy
+msgid "Invalid identity type."
+msgstr "Netinkamas šrifto dydis."
+
+#: platform/windows/export/export.cpp
+#, fuzzy
+msgid "Invalid timestamp server."
+msgstr "Netinkamas šrifto dydis."
+
+#: platform/windows/export/export.cpp
+msgid ""
+"Could not start signtool executable. Configure signtool path in the Editor "
+"Settings (Export > Windows > Signtool), or disable \"Codesign\" in the "
+"export preset."
+msgstr ""
+
+#: platform/windows/export/export.cpp
+#, fuzzy
+msgid "Signtool failed to sign executable: %s."
+msgstr "Netinkamas šrifto dydis."
+
+#: platform/windows/export/export.cpp
+#, fuzzy
+msgid "Failed to remove temporary file \"%s\"."
+msgstr "Nepavyko pašalinti laikino failo:"
+
+#: platform/windows/export/export.cpp
 msgid ""
 "The rcedit tool must be configured in the Editor Settings (Export > Windows "
 "> Rcedit) to change the icon or app information data."
@@ -19980,6 +20283,23 @@ msgid "Invalid product version:"
 msgstr "Netinkamas šrifto dydis."
 
 #: platform/windows/export/export.cpp
+msgid "Windows executables cannot be >= 4 GiB."
+msgstr ""
+
+#: platform/windows/export/export.cpp platform/x11/export/export.cpp
+#, fuzzy
+msgid "Failed to open executable file \"%s\"."
+msgstr "Netinkamas šrifto dydis."
+
+#: platform/windows/export/export.cpp platform/x11/export/export.cpp
+msgid "Executable file header corrupted."
+msgstr ""
+
+#: platform/windows/export/export.cpp platform/x11/export/export.cpp
+msgid "Executable \"pck\" section not found."
+msgstr ""
+
+#: platform/windows/export/export.cpp
 msgid "Windows"
 msgstr ""
 
@@ -19993,6 +20313,10 @@ msgstr ""
 
 #: platform/windows/export/export.cpp
 msgid "Wine"
+msgstr ""
+
+#: platform/x11/export/export.cpp
+msgid "32-bit executables cannot have embedded data >= 4 GiB."
 msgstr ""
 
 #: scene/2d/animated_sprite.cpp scene/3d/sprite_3d.cpp
@@ -20113,7 +20437,8 @@ msgstr ""
 
 #: scene/2d/audio_stream_player_2d.cpp scene/3d/audio_stream_player_3d.cpp
 #: scene/3d/light.cpp scene/3d/reflection_probe.cpp
-#: scene/3d/visual_instance.cpp scene/resources/material.cpp
+#: scene/3d/visibility_notifier.cpp scene/3d/visual_instance.cpp
+#: scene/resources/material.cpp
 msgid "Max Distance"
 msgstr ""
 
@@ -20161,7 +20486,7 @@ msgstr "Priartinti"
 msgid "Custom Viewport"
 msgstr ""
 
-#: scene/2d/camera_2d.cpp scene/3d/camera.cpp
+#: scene/2d/camera_2d.cpp scene/3d/camera.cpp scene/3d/interpolated_camera.cpp
 #: scene/animation/animation_player.cpp scene/animation/animation_tree.cpp
 #: scene/animation/animation_tree_player.cpp scene/main/timer.cpp
 #, fuzzy
@@ -20859,9 +21184,40 @@ msgstr ""
 msgid "Edge Connection Margin"
 msgstr "Prijungti"
 
+#: scene/2d/navigation_2d.cpp
+msgid ""
+"'Navigation2D' node and 'Navigation2D.get_simple_path()' are deprecated and "
+"will be removed in a future version. Use 'Navigation2DServer.map_get_path()' "
+"instead."
+msgstr ""
+
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent.cpp
+#, fuzzy
+msgid "Pathfinding"
+msgstr "Konstanta"
+
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent.cpp
+#, fuzzy
+msgid "Path Desired Distance"
+msgstr "Diegti"
+
 #: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent.cpp
 msgid "Target Desired Distance"
 msgstr ""
+
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent.cpp
+msgid "Path Max Distance"
+msgstr ""
+
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent.cpp
+#, fuzzy
+msgid "Avoidance"
+msgstr "Įgalinti"
+
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent.cpp
+#, fuzzy
+msgid "Avoidance Enabled"
+msgstr "Įgalinti"
 
 #: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent.cpp
 msgid "Neighbor Dist"
@@ -20878,15 +21234,6 @@ msgstr ""
 #: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent.cpp
 msgid "Max Speed"
 msgstr ""
-
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent.cpp
-msgid "Path Max Distance"
-msgstr ""
-
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent.cpp
-#, fuzzy
-msgid "Avoidance Enabled"
-msgstr "Įgalinti"
 
 #: scene/2d/navigation_agent_2d.cpp
 msgid ""
@@ -20910,13 +21257,16 @@ msgid ""
 msgstr ""
 
 #: scene/2d/navigation_polygon.cpp
-msgid ""
-"NavigationPolygonInstance must be a child or grandchild to a Navigation2D "
-"node. It only provides navigation data."
+msgid "Navpoly"
 msgstr ""
 
-#: scene/2d/navigation_polygon.cpp
-msgid "Navpoly"
+#: scene/2d/navigation_polygon.cpp scene/3d/navigation_mesh_instance.cpp
+#, fuzzy
+msgid "Enter Cost"
+msgstr "Ištrinti Efektą"
+
+#: scene/2d/navigation_polygon.cpp scene/3d/navigation_mesh_instance.cpp
+msgid "Travel Cost"
 msgstr ""
 
 #: scene/2d/node_2d.cpp scene/2d/polygon_2d.cpp scene/3d/spatial.cpp
@@ -20924,7 +21274,7 @@ msgstr ""
 msgid "Rotation Degrees"
 msgstr ""
 
-#: scene/2d/node_2d.cpp
+#: scene/2d/node_2d.cpp scene/3d/spatial.cpp
 #, fuzzy
 msgid "Global Rotation"
 msgstr "Konstanta"
@@ -22025,6 +22375,13 @@ msgstr ""
 msgid "Transform Normals"
 msgstr "Keisti Poligono Skalę"
 
+#: scene/3d/navigation.cpp
+msgid ""
+"'Navigation' node and 'Navigation.get_simple_path()' are deprecated and will "
+"be removed in a future version. Use 'NavigationServer.map_get_path()' "
+"instead."
+msgstr ""
+
 #: scene/3d/navigation.cpp scene/resources/curve.cpp
 msgid "Up Vector"
 msgstr ""
@@ -22044,12 +22401,6 @@ msgstr ""
 #: scene/3d/navigation_agent.cpp
 msgid ""
 "The NavigationAgent can be used only under a Spatial inheriting parent node."
-msgstr ""
-
-#: scene/3d/navigation_mesh_instance.cpp
-msgid ""
-"NavigationMeshInstance must be a child or grandchild to a Navigation node. "
-"It only provides navigation data."
 msgstr ""
 
 #: scene/3d/navigation_mesh_instance.cpp scene/resources/mesh_library.cpp
@@ -22885,6 +23236,11 @@ msgid ""
 "running.\n"
 "Change the size in children collision shapes instead."
 msgstr ""
+
+#: scene/3d/spatial.cpp
+#, fuzzy
+msgid "Global Translation"
+msgstr "Animacija: Pakeisti Transformaciją"
 
 #: scene/3d/spatial.cpp
 msgid "Matrix"
@@ -24048,6 +24404,11 @@ msgstr ""
 
 #: scene/gui/text_edit.cpp
 #, fuzzy
+msgid "Drag And Drop Selection Enabled"
+msgstr "Pasirinkite Nodus, kuriuos norite importuoti"
+
+#: scene/gui/text_edit.cpp
+#, fuzzy
 msgid "Hiding Enabled"
 msgstr "Įgalinti"
 
@@ -24431,16 +24792,17 @@ msgstr "Importuoti iš Nodo:"
 
 #: scene/main/viewport.cpp
 msgid ""
-"This viewport is not set as render target. If you intend for it to display "
-"its contents directly to the screen, make it a child of a Control so it can "
-"obtain a size. Otherwise, make it a RenderTarget and assign its internal "
-"texture to some node for display."
+"The Viewport size must be greater than or equal to 2 pixels on both "
+"dimensions to render anything."
 msgstr ""
 
 #: scene/main/viewport.cpp
 msgid ""
-"The Viewport size must be greater than or equal to 2 pixels on both "
-"dimensions to render anything."
+"This Viewport has HDR enabled, but its Usage is set to 2D or 2D No-"
+"Sampling.\n"
+"HDR is only supported in Viewports that have their Usage set to 3D or 3D No-"
+"Effects.\n"
+"HDR will be disabled for this Viewport."
 msgstr ""
 
 #: scene/main/viewport.cpp
@@ -24590,6 +24952,16 @@ msgstr "Fizikos Kadro %"
 #, fuzzy
 msgid "3D Physics"
 msgstr "Fizikos Kadro %"
+
+#: scene/register_scene_types.cpp
+#, fuzzy
+msgid "2D Navigation"
+msgstr "Animacijos Nodas"
+
+#: scene/register_scene_types.cpp
+#, fuzzy
+msgid "3D Navigation"
+msgstr "Animacijos Nodas"
 
 #: scene/register_scene_types.cpp
 msgid "Use hiDPI"
@@ -25963,7 +26335,7 @@ msgstr "Transition Nodas"
 msgid "Refraction"
 msgstr "Versija:"
 
-#: scene/resources/material.cpp scene/resources/navigation_mesh.cpp
+#: scene/resources/material.cpp
 msgid "Detail"
 msgstr ""
 
@@ -26043,8 +26415,14 @@ msgid "Visible Instance Count"
 msgstr ""
 
 #: scene/resources/navigation_mesh.cpp
-msgid "Sample Partition Type"
-msgstr ""
+#, fuzzy
+msgid "Sampling"
+msgstr "Skalė:"
+
+#: scene/resources/navigation_mesh.cpp
+#, fuzzy
+msgid "Partition Type"
+msgstr "Versija:"
 
 #: scene/resources/navigation_mesh.cpp
 msgid "Parsed Geometry Type"
@@ -26059,8 +26437,13 @@ msgid "Source Group Name"
 msgstr ""
 
 #: scene/resources/navigation_mesh.cpp
-msgid "Agent"
+msgid "Cells"
 msgstr ""
+
+#: scene/resources/navigation_mesh.cpp
+#, fuzzy
+msgid "Agents"
+msgstr "Atidaryti Skriptų Editorių"
 
 #: scene/resources/navigation_mesh.cpp
 msgid "Max Climb"
@@ -26071,11 +26454,16 @@ msgid "Max Slope"
 msgstr ""
 
 #: scene/resources/navigation_mesh.cpp
+#, fuzzy
+msgid "Regions"
+msgstr "Animacijos Nodas"
+
+#: scene/resources/navigation_mesh.cpp
 msgid "Merge Size"
 msgstr ""
 
 #: scene/resources/navigation_mesh.cpp
-msgid "Edge"
+msgid "Edges"
 msgstr ""
 
 #: scene/resources/navigation_mesh.cpp
@@ -26086,6 +26474,11 @@ msgstr "Įvyko klaida kraunant šriftą."
 #: scene/resources/navigation_mesh.cpp
 msgid "Verts Per Poly"
 msgstr ""
+
+#: scene/resources/navigation_mesh.cpp
+#, fuzzy
+msgid "Details"
+msgstr "Redaguoti Filtrus"
 
 #: scene/resources/navigation_mesh.cpp
 msgid "Sample Distance"
@@ -26104,8 +26497,17 @@ msgid "Ledge Spans"
 msgstr ""
 
 #: scene/resources/navigation_mesh.cpp
-msgid "Filter Walkable Low Height Spans"
+msgid "Walkable Low Height Spans"
 msgstr ""
+
+#: scene/resources/navigation_mesh.cpp
+msgid "Baking AABB"
+msgstr ""
+
+#: scene/resources/navigation_mesh.cpp
+#, fuzzy
+msgid "Baking AABB Offset"
+msgstr "Panaikinti pasirinkimą"
 
 #: scene/resources/occluder_shape.cpp
 msgid "Spheres"
@@ -26499,6 +26901,11 @@ msgid "Scenario"
 msgstr "Kelias iki Scenos:"
 
 #: scene/resources/world.cpp scene/resources/world_2d.cpp
+#, fuzzy
+msgid "Navigation Map"
+msgstr "Animacijos Nodas"
+
+#: scene/resources/world.cpp scene/resources/world_2d.cpp
 msgid "Direct Space State"
 msgstr ""
 
@@ -26515,6 +26922,26 @@ msgstr "Redaguoti Filtrus"
 #: scene/resources/world.cpp scene/resources/world_2d.cpp
 msgid "Default Angular Damp"
 msgstr ""
+
+#: scene/resources/world.cpp
+#, fuzzy
+msgid "Default Map Up"
+msgstr "Atnaujinti"
+
+#: scene/resources/world.cpp scene/resources/world_2d.cpp
+#, fuzzy
+msgid "Default Cell Size"
+msgstr "Atnaujinti"
+
+#: scene/resources/world.cpp scene/resources/world_2d.cpp
+#, fuzzy
+msgid "Default Cell Height"
+msgstr "Redaguoti Filtrus"
+
+#: scene/resources/world.cpp scene/resources/world_2d.cpp
+#, fuzzy
+msgid "Default Edge Connection Margin"
+msgstr "Prijungti"
 
 #: scene/resources/world_2d.cpp
 msgid "Canvas"

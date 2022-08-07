@@ -207,9 +207,10 @@ msgid "Data"
 msgstr ""
 
 #: core/io/file_access_network.cpp core/register_core_types.cpp
-#: editor/editor_settings.cpp main/main.cpp
+#: editor/editor_file_dialog.cpp editor/editor_settings.cpp main/main.cpp
 #: modules/gdscript/language_server/gdscript_language_server.cpp
 #: modules/webrtc/webrtc_data_channel.h modules/websocket/websocket_macros.h
+#: scene/gui/file_dialog.cpp
 msgid "Network"
 msgstr ""
 
@@ -363,6 +364,15 @@ msgstr ""
 msgid "Max Size (KB)"
 msgstr ""
 
+#: core/os/input.cpp
+#, fuzzy
+msgid "Mouse Mode"
+msgstr "නිවේශන මාදිලිය"
+
+#: core/os/input.cpp
+msgid "Use Accumulated Input"
+msgstr ""
+
 #: core/os/input_event.cpp editor/project_settings_editor.cpp
 #: servers/audio_server.cpp
 msgid "Device"
@@ -386,6 +396,10 @@ msgstr ""
 
 #: core/os/input_event.cpp
 msgid "Command"
+msgstr ""
+
+#: core/os/input_event.cpp
+msgid "Physical"
 msgstr ""
 
 #: core/os/input_event.cpp scene/2d/touch_screen_button.cpp
@@ -437,6 +451,10 @@ msgstr ""
 
 #: core/os/input_event.cpp
 msgid "Pressure"
+msgstr ""
+
+#: core/os/input_event.cpp
+msgid "Pen Inverted"
 msgstr ""
 
 #: core/os/input_event.cpp
@@ -545,7 +563,8 @@ msgstr ""
 
 #: core/project_settings.cpp editor/editor_node.cpp editor/editor_settings.cpp
 #: editor/plugins/script_editor_plugin.cpp editor/project_manager.cpp
-#: main/main.cpp
+#: main/main.cpp platform/android/export/export_plugin.cpp
+#: platform/javascript/export/export.cpp
 msgid "Run"
 msgstr ""
 
@@ -629,6 +648,10 @@ msgid "Main Run Args"
 msgstr ""
 
 #: core/project_settings.cpp
+msgid "Scene Naming"
+msgstr ""
+
+#: core/project_settings.cpp
 msgid "Search In File Extensions"
 msgstr ""
 
@@ -636,17 +659,12 @@ msgstr ""
 msgid "Script Templates Search Path"
 msgstr ""
 
-#: core/project_settings.cpp editor/editor_node.cpp
-#: editor/plugins/version_control_editor_plugin.cpp
-msgid "Version Control"
+#: core/project_settings.cpp
+msgid "Version Control Autoload On Startup"
 msgstr ""
 
 #: core/project_settings.cpp
-msgid "Autoload On Startup"
-msgstr ""
-
-#: core/project_settings.cpp
-msgid "Plugin Name"
+msgid "Version Control Plugin Name"
 msgstr ""
 
 #: core/project_settings.cpp scene/2d/collision_object_2d.cpp
@@ -755,7 +773,8 @@ msgid "Quality"
 msgstr ""
 
 #: core/project_settings.cpp scene/gui/file_dialog.cpp
-#: scene/main/scene_tree.cpp servers/visual_server.cpp
+#: scene/main/scene_tree.cpp scene/resources/navigation_mesh.cpp
+#: servers/visual_server.cpp
 msgid "Filters"
 msgstr ""
 
@@ -2101,14 +2120,15 @@ msgstr ""
 msgid "Recent:"
 msgstr ""
 
-#: editor/create_dialog.cpp editor/plugins/script_editor_plugin.cpp
-#: editor/property_selector.cpp editor/quick_open.cpp editor/rename_dialog.cpp
+#: editor/create_dialog.cpp editor/editor_quick_open.cpp
+#: editor/plugins/script_editor_plugin.cpp editor/property_selector.cpp
+#: editor/rename_dialog.cpp
 #: modules/visual_script/visual_script_property_selector.cpp
 msgid "Search:"
 msgstr ""
 
-#: editor/create_dialog.cpp editor/plugins/script_editor_plugin.cpp
-#: editor/property_selector.cpp editor/quick_open.cpp
+#: editor/create_dialog.cpp editor/editor_quick_open.cpp
+#: editor/plugins/script_editor_plugin.cpp editor/property_selector.cpp
 #: modules/visual_script/visual_script_property_selector.cpp
 msgid "Matches:"
 msgstr ""
@@ -2164,8 +2184,8 @@ msgstr ""
 
 #: editor/dependency_editor.cpp editor/editor_file_dialog.cpp
 #: editor/editor_help_search.cpp editor/editor_node.cpp
-#: editor/filesystem_dock.cpp editor/plugins/script_editor_plugin.cpp
-#: editor/property_selector.cpp editor/quick_open.cpp
+#: editor/editor_quick_open.cpp editor/filesystem_dock.cpp
+#: editor/plugins/script_editor_plugin.cpp editor/property_selector.cpp
 #: editor/script_create_dialog.cpp
 #: modules/visual_script/visual_script_property_selector.cpp
 #: scene/gui/file_dialog.cpp
@@ -2173,7 +2193,7 @@ msgid "Open"
 msgstr ""
 
 #: editor/dependency_editor.cpp
-msgid "Owners Of:"
+msgid "Owners of: %s (Total: %d)"
 msgstr ""
 
 #: editor/dependency_editor.cpp
@@ -2465,7 +2485,7 @@ msgid "Bus Options"
 msgstr "ශ්‍රිත:"
 
 #: editor/editor_audio_buses.cpp editor/filesystem_dock.cpp
-#: editor/scene_tree_dock.cpp
+#: editor/project_export.cpp editor/scene_tree_dock.cpp
 msgid "Duplicate"
 msgstr ""
 
@@ -2721,6 +2741,23 @@ msgid "Choose"
 msgstr ""
 
 #: editor/editor_export.cpp
+msgid "Project export for platform:"
+msgstr ""
+
+#: editor/editor_export.cpp
+#, fuzzy
+msgid "Completed with warnings."
+msgstr "ශ්‍රිත:"
+
+#: editor/editor_export.cpp
+msgid "Completed successfully."
+msgstr ""
+
+#: editor/editor_export.cpp
+msgid "Failed."
+msgstr ""
+
+#: editor/editor_export.cpp
 msgid "Storing File:"
 msgstr ""
 
@@ -2730,6 +2767,26 @@ msgstr ""
 
 #: editor/editor_export.cpp
 msgid "Packing"
+msgstr ""
+
+#: editor/editor_export.cpp
+msgid "Save PCK"
+msgstr ""
+
+#: editor/editor_export.cpp
+msgid "Cannot create file \"%s\"."
+msgstr ""
+
+#: editor/editor_export.cpp
+msgid "Failed to export project files."
+msgstr ""
+
+#: editor/editor_export.cpp
+msgid "Can't open file to read from path \"%s\"."
+msgstr ""
+
+#: editor/editor_export.cpp
+msgid "Save ZIP"
 msgstr ""
 
 #: editor/editor_export.cpp
@@ -2836,8 +2893,25 @@ msgstr ""
 msgid "Custom release template not found."
 msgstr ""
 
+#: editor/editor_export.cpp
+msgid "Prepare Template"
+msgstr ""
+
+#: editor/editor_export.cpp platform/osx/export/export.cpp
+msgid "The given export path doesn't exist."
+msgstr ""
+
 #: editor/editor_export.cpp platform/javascript/export/export.cpp
-msgid "Template file not found:"
+msgid "Template file not found: \"%s\"."
+msgstr ""
+
+#: editor/editor_export.cpp
+msgid "Failed to copy export template."
+msgstr ""
+
+#: editor/editor_export.cpp platform/windows/export/export.cpp
+#: platform/x11/export/export.cpp
+msgid "PCK Embedding"
 msgstr ""
 
 #: editor/editor_export.cpp
@@ -3009,9 +3083,9 @@ msgid "Import"
 msgstr ""
 
 #: editor/editor_feature_profile.cpp editor/project_export.cpp
-#: platform/android/export/export.cpp platform/javascript/export/export.cpp
-#: platform/osx/export/export.cpp platform/uwp/export/export.cpp
-#: platform/windows/export/export.cpp
+#: platform/android/export/export.cpp platform/android/export/export_plugin.cpp
+#: platform/javascript/export/export.cpp platform/osx/export/export.cpp
+#: platform/uwp/export/export.cpp platform/windows/export/export.cpp
 msgid "Export"
 msgstr ""
 
@@ -4095,14 +4169,6 @@ msgid ""
 "Unable to write to file '%s', file in use, locked or lacking permissions."
 msgstr ""
 
-#: editor/editor_node.cpp editor/plugins/theme_editor_plugin.cpp
-msgid "Scene"
-msgstr ""
-
-#: editor/editor_node.cpp
-msgid "Scene Naming"
-msgstr ""
-
 #: editor/editor_node.cpp editor/editor_settings.cpp editor/scene_tree_dock.cpp
 #: servers/arvr/arvr_interface.cpp
 msgid "Interface"
@@ -4221,6 +4287,10 @@ msgid "Default Color Picker Mode"
 msgstr ""
 
 #: editor/editor_node.cpp editor/plugins/version_control_editor_plugin.cpp
+msgid "Version Control"
+msgstr ""
+
+#: editor/editor_node.cpp editor/plugins/version_control_editor_plugin.cpp
 msgid "Username"
 msgstr ""
 
@@ -4246,6 +4316,10 @@ msgstr ""
 
 #: editor/editor_node.cpp
 msgid "Add a new scene."
+msgstr ""
+
+#: editor/editor_node.cpp editor/plugins/theme_editor_plugin.cpp
+msgid "Scene"
 msgstr ""
 
 #: editor/editor_node.cpp
@@ -4977,6 +5051,11 @@ msgid ""
 "as runnable."
 msgstr ""
 
+#: editor/editor_run_native.cpp
+#, fuzzy
+msgid "Project Run"
+msgstr "මෙම ලුහුබදින්නා ඉවත් කරන්න."
+
 #: editor/editor_run_script.cpp
 msgid "Write your logic in the _run() method."
 msgstr ""
@@ -5236,7 +5315,9 @@ msgid "Draw Spaces"
 msgstr ""
 
 #: editor/editor_settings.cpp editor/plugins/spatial_editor_plugin.cpp
-#: editor/plugins/tile_set_editor_plugin.cpp scene/main/scene_tree.cpp
+#: editor/plugins/tile_set_editor_plugin.cpp scene/2d/tile_map.cpp
+#: scene/main/scene_tree.cpp scene/resources/world.cpp
+#: scene/resources/world_2d.cpp
 #, fuzzy
 msgid "Navigation"
 msgstr "නිවේශන මාදිලිය"
@@ -5259,6 +5340,14 @@ msgstr ""
 
 #: editor/editor_settings.cpp
 msgid "Mouse Extra Buttons Navigate History"
+msgstr ""
+
+#: editor/editor_settings.cpp
+msgid "Drag And Drop Selection"
+msgstr ""
+
+#: editor/editor_settings.cpp
+msgid "Stay In Script Editor On Node Selected"
 msgstr ""
 
 #: editor/editor_settings.cpp
@@ -6639,7 +6728,7 @@ msgstr ""
 
 #: editor/import/resource_importer_layered_texture.cpp
 #: editor/import/resource_importer_texture.cpp scene/2d/light_2d.cpp
-#: scene/gui/control.cpp scene/resources/navigation_mesh.cpp
+#: scene/gui/control.cpp
 #, fuzzy
 msgid "Filter"
 msgstr "නිවේශන මාදිලිය"
@@ -6915,6 +7004,18 @@ msgstr ""
 
 #: editor/import/resource_importer_scene.cpp
 msgid "Saving..."
+msgstr ""
+
+#: editor/import/resource_importer_texture.cpp
+msgid ""
+"%s: Texture detected as used as a normal map in 3D. Enabling red-green "
+"texture compression to reduce memory usage (blue channel is discarded)."
+msgstr ""
+
+#: editor/import/resource_importer_texture.cpp
+msgid ""
+"%s: Texture detected as used in 3D. Enabling filter, repeat, mipmap "
+"generation and VRAM texture compression."
 msgstr ""
 
 #: editor/import/resource_importer_texture.cpp
@@ -7589,7 +7690,16 @@ msgid "New Anim"
 msgstr ""
 
 #: editor/plugins/animation_player_editor_plugin.cpp
+msgid "Create New Animation"
+msgstr ""
+
+#: editor/plugins/animation_player_editor_plugin.cpp
 msgid "Change Animation Name:"
+msgstr ""
+
+#: editor/plugins/animation_player_editor_plugin.cpp
+#: editor/plugins/sprite_frames_editor_plugin.cpp
+msgid "Rename Animation"
 msgstr ""
 
 #: editor/plugins/animation_player_editor_plugin.cpp
@@ -7608,11 +7718,6 @@ msgstr ""
 
 #: editor/plugins/animation_player_editor_plugin.cpp
 msgid "Animation name already exists!"
-msgstr ""
-
-#: editor/plugins/animation_player_editor_plugin.cpp
-#: editor/plugins/sprite_frames_editor_plugin.cpp
-msgid "Rename Animation"
 msgstr ""
 
 #: editor/plugins/animation_player_editor_plugin.cpp
@@ -7755,10 +7860,6 @@ msgstr ""
 
 #: editor/plugins/animation_player_editor_plugin.cpp
 msgid "Pin AnimationPlayer"
-msgstr ""
-
-#: editor/plugins/animation_player_editor_plugin.cpp
-msgid "Create New Animation"
 msgstr ""
 
 #: editor/plugins/animation_player_editor_plugin.cpp
@@ -9832,6 +9933,7 @@ msgid "Points"
 msgstr ""
 
 #: editor/plugins/polygon_2d_editor_plugin.cpp scene/2d/polygon_2d.cpp
+#: scene/resources/navigation_mesh.cpp
 msgid "Polygons"
 msgstr ""
 
@@ -11189,7 +11291,7 @@ msgid "Invalid geometry, can't replace by mesh."
 msgstr ""
 
 #: editor/plugins/sprite_editor_plugin.cpp
-msgid "Convert to Mesh2D"
+msgid "Convert to MeshInstance2D"
 msgstr ""
 
 #: editor/plugins/sprite_editor_plugin.cpp
@@ -11294,6 +11396,11 @@ msgstr "ශ්‍රිත:"
 #, fuzzy
 msgid "New Animation"
 msgstr "සජීවීකරණ පුනරාවර්ථනය"
+
+#: editor/plugins/sprite_frames_editor_plugin.cpp
+#, fuzzy
+msgid "Filter animations"
+msgstr "ශ්‍රිත:"
 
 #: editor/plugins/sprite_frames_editor_plugin.cpp
 msgid "Speed:"
@@ -12163,8 +12270,7 @@ msgid "Select the previous shape, subtile, or Tile."
 msgstr ""
 
 #: editor/plugins/tile_set_editor_plugin.cpp scene/2d/sprite.cpp
-#: scene/3d/sprite_3d.cpp scene/resources/navigation_mesh.cpp
-#: scene/resources/texture.cpp
+#: scene/3d/sprite_3d.cpp scene/resources/texture.cpp
 #, fuzzy
 msgid "Region"
 msgstr "නිවේශන මාදිලිය"
@@ -13614,28 +13720,7 @@ msgid "Delete preset '%s'?"
 msgstr ""
 
 #: editor/project_export.cpp
-msgid ""
-"Failed to export the project for platform '%s'.\n"
-"Export templates seem to be missing or invalid."
-msgstr ""
-
-#: editor/project_export.cpp
-msgid ""
-"Failed to export the project for platform '%s'.\n"
-"This might be due to a configuration issue in the export preset or your "
-"export settings."
-msgstr ""
-
-#: editor/project_export.cpp
 msgid "Exporting All"
-msgstr ""
-
-#: editor/project_export.cpp
-msgid "The given export path doesn't exist:"
-msgstr ""
-
-#: editor/project_export.cpp
-msgid "Export templates for this platform are missing/corrupted:"
 msgstr ""
 
 #: editor/project_export.cpp
@@ -13770,6 +13855,10 @@ msgstr "ලක්ෂණය ලුහුබදින්න"
 
 #: editor/project_export.cpp
 msgid "Export templates for this platform are missing:"
+msgstr ""
+
+#: editor/project_export.cpp
+msgid "Project Export"
 msgstr ""
 
 #: editor/project_export.cpp
@@ -16045,7 +16134,7 @@ msgstr ""
 
 #: modules/csg/csg_shape.cpp scene/2d/collision_polygon_2d.cpp
 #: scene/2d/light_occluder_2d.cpp scene/2d/polygon_2d.cpp
-#: scene/3d/collision_polygon.cpp scene/resources/navigation_mesh.cpp
+#: scene/3d/collision_polygon.cpp
 msgid "Polygon"
 msgstr ""
 
@@ -16619,7 +16708,6 @@ msgid "Use In Baked Light"
 msgstr ""
 
 #: modules/gridmap/grid_map.cpp scene/2d/tile_map.cpp
-#: scene/resources/navigation_mesh.cpp
 msgid "Cell"
 msgstr ""
 
@@ -16647,6 +16735,19 @@ msgstr "යතුරු මකා දමන්න"
 #: scene/resources/material.cpp
 msgid "Mask"
 msgstr ""
+
+#: modules/gridmap/grid_map.cpp scene/2d/tile_map.cpp
+#, fuzzy
+msgid "Bake Navigation"
+msgstr "නිවේශන මාදිලිය"
+
+#: modules/gridmap/grid_map.cpp scene/2d/navigation_2d.cpp
+#: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_polygon.cpp
+#: scene/2d/tile_map.cpp scene/3d/navigation.cpp scene/3d/navigation_agent.cpp
+#: scene/3d/navigation_mesh_instance.cpp
+#, fuzzy
+msgid "Navigation Layers"
+msgstr "නිවේශන මාදිලිය"
 
 #: modules/gridmap/grid_map_editor_plugin.cpp
 msgid "Next Plane"
@@ -17910,6 +18011,11 @@ msgid "The package must have at least one '.' separator."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
+#, fuzzy
+msgid "Custom Build"
+msgstr "යතුරු පිටපත් කරන්න"
+
+#: platform/android/export/export_plugin.cpp
 msgid "Use Custom Build"
 msgstr ""
 
@@ -17917,6 +18023,15 @@ msgstr ""
 #, fuzzy
 msgid "Export Format"
 msgstr "Anim පරිවර්තනය වෙනස් කරන්න"
+
+#: platform/android/export/export_plugin.cpp
+msgid "Min SDK"
+msgstr ""
+
+#: platform/android/export/export_plugin.cpp
+#, fuzzy
+msgid "Target SDK"
+msgstr "යතුරු මකා දමන්න"
 
 #: platform/android/export/export_plugin.cpp platform/iphone/export/export.cpp
 msgid "Architectures"
@@ -17953,15 +18068,6 @@ msgstr ""
 #: platform/android/export/export_plugin.cpp
 msgid "Code"
 msgstr ""
-
-#: platform/android/export/export_plugin.cpp
-msgid "Min SDK"
-msgstr ""
-
-#: platform/android/export/export_plugin.cpp
-#, fuzzy
-msgid "Target SDK"
-msgstr "යතුරු මකා දමන්න"
 
 #: platform/android/export/export_plugin.cpp platform/uwp/export/export.cpp
 msgid "Package"
@@ -18112,10 +18218,6 @@ msgid "Could not execute on device."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
-msgid "Unable to find the 'apksigner' tool."
-msgstr ""
-
-#: platform/android/export/export_plugin.cpp
 msgid ""
 "Android build template not installed in the project. Install it from the "
 "Project menu."
@@ -18192,12 +18294,12 @@ msgstr ""
 
 #: platform/android/export/export_plugin.cpp
 msgid ""
-"\"Hand Tracking\" is only valid when \"Xr Mode\" is \"Oculus Mobile VrApi\" "
+"\"Hand Tracking\" is only valid when \"XR Mode\" is \"Oculus Mobile VrApi\" "
 "or \"OpenXR\"."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
-msgid "\"Passthrough\" is only valid when \"Xr Mode\" is \"OpenXR\"."
+msgid "\"Passthrough\" is only valid when \"XR Mode\" is \"OpenXR\"."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
@@ -18206,25 +18308,49 @@ msgstr ""
 
 #: platform/android/export/export_plugin.cpp
 msgid ""
-"Changing the \"Min Sdk\" is only valid when \"Use Custom Build\" is enabled."
+"\"Min SDK\" can only be overridden when \"Use Custom Build\" is enabled."
+msgstr ""
+
+#: platform/android/export/export_plugin.cpp
+msgid "\"Min SDK\" should be a valid integer, but got \"%s\" which is invalid."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
 msgid ""
-"Changing the \"Target Sdk\" is only valid when \"Use Custom Build\" is "
-"enabled."
-msgstr ""
-
-#: platform/android/export/export_plugin.cpp
-msgid "\"Target Sdk\" version must be greater or equal to \"Min Sdk\" version."
+"\"Min SDK\" cannot be lower than %d, which is the version needed by the "
+"Godot library."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
 msgid ""
-"'apksigner' could not be found.\n"
-"Please check the command is available in the Android SDK build-tools "
-"directory.\n"
-"The resulting %s is unsigned."
+"\"Target SDK\" can only be overridden when \"Use Custom Build\" is enabled."
+msgstr ""
+
+#: platform/android/export/export_plugin.cpp
+msgid ""
+"\"Target SDK\" should be a valid integer, but got \"%s\" which is invalid."
+msgstr ""
+
+#: platform/android/export/export_plugin.cpp
+msgid ""
+"\"Target SDK\" %d is higher than the default version %d. This may work, but "
+"wasn't tested and may be unstable."
+msgstr ""
+
+#: platform/android/export/export_plugin.cpp
+msgid "\"Target SDK\" version must be greater or equal to \"Min SDK\" version."
+msgstr ""
+
+#: platform/android/export/export_plugin.cpp platform/osx/export/export.cpp
+#: platform/windows/export/export.cpp
+#, fuzzy
+msgid "Code Signing"
+msgstr "යතුරු පිටපත් කරන්න"
+
+#: platform/android/export/export_plugin.cpp
+msgid ""
+"'apksigner' could not be found. Please check that the command is available "
+"in the Android SDK build-tools directory. The resulting %s is unsigned."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
@@ -18237,6 +18363,10 @@ msgstr ""
 
 #: platform/android/export/export_plugin.cpp
 msgid "Could not find keystore, unable to export."
+msgstr ""
+
+#: platform/android/export/export_plugin.cpp
+msgid "Could not start apksigner executable."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
@@ -18268,7 +18398,7 @@ msgid "Invalid filename! Android APK requires the *.apk extension."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
-msgid "Unsupported export format!\n"
+msgid "Unsupported export format!"
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
@@ -18279,19 +18409,17 @@ msgstr ""
 
 #: platform/android/export/export_plugin.cpp
 msgid ""
-"Android build version mismatch:\n"
-"   Template installed: %s\n"
-"   Godot Version: %s\n"
+"Android build version mismatch: Template installed: %s, Godot version: %s. "
 "Please reinstall Android build template from 'Project' menu."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
 msgid ""
-"Unable to overwrite res://android/build/res/*.xml files with project name"
+"Unable to overwrite res://android/build/res/*.xml files with project name."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
-msgid "Could not export project files to gradle project\n"
+msgid "Could not export project files to gradle project."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
@@ -18304,7 +18432,7 @@ msgstr ""
 
 #: platform/android/export/export_plugin.cpp
 msgid ""
-"Building of Android project failed, check output for the error.\n"
+"Building of Android project failed, check output for the error. "
 "Alternatively visit docs.godotengine.org for Android build documentation."
 msgstr ""
 
@@ -18319,7 +18447,7 @@ msgid ""
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
-msgid "Package not found: %s"
+msgid "Package not found: \"%s\"."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
@@ -18327,15 +18455,12 @@ msgid "Creating APK..."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
-msgid ""
-"Could not find template APK to export:\n"
-"%s"
+msgid "Could not find template APK to export: \"%s\"."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
 msgid ""
-"Missing libraries in the export template for the selected architectures: "
-"%s.\n"
+"Missing libraries in the export template for the selected architectures: %s. "
 "Please build a template with all required libraries, or uncheck the missing "
 "architectures in the export preset."
 msgstr ""
@@ -18345,7 +18470,7 @@ msgid "Adding files..."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
-msgid "Could not export project files"
+msgid "Could not export project files."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
@@ -18575,6 +18700,15 @@ msgstr "යතුරු පිටපත් කරන්න"
 msgid "Custom BG Color"
 msgstr "යතුරු පිටපත් කරන්න"
 
+#: platform/iphone/export/export.cpp platform/javascript/export/export.cpp
+#: platform/osx/export/export.cpp
+msgid "Prepare Templates"
+msgstr ""
+
+#: platform/iphone/export/export.cpp platform/osx/export/export.cpp
+msgid "Export template not found."
+msgstr ""
+
 #: platform/iphone/export/export.cpp
 msgid "App Store Team ID not specified - cannot configure the project."
 msgstr ""
@@ -18596,19 +18730,29 @@ msgid "Run exported HTML in the system's default browser."
 msgstr ""
 
 #: platform/javascript/export/export.cpp
-msgid "Could not open template for export:"
+msgid "Could not open template for export: \"%s\"."
 msgstr ""
 
 #: platform/javascript/export/export.cpp
-msgid "Invalid export template:"
+#, fuzzy
+msgid "Invalid export template: \"%s\"."
+msgstr "%s වර්ගය %s මූල වර්ගය සදහා වැරදි සුචියක්"
+
+#: platform/javascript/export/export.cpp
+msgid "Could not write file: \"%s\"."
+msgstr ""
+
+#: platform/javascript/export/export.cpp platform/osx/export/export.cpp
+#, fuzzy
+msgid "Icon Creation"
+msgstr "ශ්‍රිත:"
+
+#: platform/javascript/export/export.cpp
+msgid "Could not read file: \"%s\"."
 msgstr ""
 
 #: platform/javascript/export/export.cpp
-msgid "Could not write file:"
-msgstr ""
-
-#: platform/javascript/export/export.cpp
-msgid "Could not read file:"
+msgid "PWA"
 msgstr ""
 
 #: platform/javascript/export/export.cpp
@@ -18684,15 +18828,15 @@ msgid "Icon 512 X 512"
 msgstr ""
 
 #: platform/javascript/export/export.cpp
-msgid "Could not read HTML shell:"
+msgid "Could not read HTML shell: \"%s\"."
 msgstr ""
 
 #: platform/javascript/export/export.cpp
-msgid "Could not create HTTP server directory:"
+msgid "Could not create HTTP server directory: %s."
 msgstr ""
 
 #: platform/javascript/export/export.cpp
-msgid "Error starting HTTP server:"
+msgid "Error starting HTTP server: %d."
 msgstr ""
 
 #: platform/javascript/export/export.cpp
@@ -18964,9 +19108,26 @@ msgid "Apple Team ID"
 msgstr ""
 
 #: platform/osx/export/export.cpp
+msgid "Could not open icon file \"%s\"."
+msgstr ""
+
+#: platform/osx/export/export.cpp
+msgid "Could not start xcrun executable."
+msgstr ""
+
+#: platform/osx/export/export.cpp
+#, fuzzy
+msgid "Notarization failed."
+msgstr "නිවේශන මාදිලිය"
+
+#: platform/osx/export/export.cpp
+msgid "Notarization request UUID: \"%s\""
+msgstr ""
+
+#: platform/osx/export/export.cpp
 msgid ""
-"Note: The notarization process generally takes less than an hour. When the "
-"process is completed, you'll receive an email."
+"The notarization process generally takes less than an hour. When the process "
+"is completed, you'll receive an email."
 msgstr ""
 
 #: platform/osx/export/export.cpp
@@ -18982,7 +19143,55 @@ msgid ""
 msgstr ""
 
 #: platform/osx/export/export.cpp
+msgid "Timestamping is not compatible with ad-hoc signature, and was disabled!"
+msgstr ""
+
+#: platform/osx/export/export.cpp
+msgid ""
+"Hardened Runtime is not compatible with ad-hoc signature, and was disabled!"
+msgstr ""
+
+#: platform/osx/export/export.cpp
+msgid "Built-in CodeSign failed with error \"%s\"."
+msgstr ""
+
+#: platform/osx/export/export.cpp
+msgid "Built-in CodeSign require regex module."
+msgstr ""
+
+#: platform/osx/export/export.cpp
+msgid ""
+"Could not start codesign executable, make sure Xcode command line tools are "
+"installed."
+msgstr ""
+
+#: platform/osx/export/export.cpp platform/windows/export/export.cpp
 msgid "No identity found."
+msgstr ""
+
+#: platform/osx/export/export.cpp
+msgid "Cannot sign file %s."
+msgstr ""
+
+#: platform/osx/export/export.cpp
+msgid "Relative symlinks are not supported, exported \"%s\" might be broken!"
+msgstr ""
+
+#: platform/osx/export/export.cpp
+#, fuzzy
+msgid "DMG Creation"
+msgstr "ශ්‍රිත:"
+
+#: platform/osx/export/export.cpp
+msgid "Could not start hdiutil executable."
+msgstr ""
+
+#: platform/osx/export/export.cpp
+msgid "`hdiutil create` failed - file exists."
+msgstr ""
+
+#: platform/osx/export/export.cpp
+msgid "`hdiutil create` failed."
 msgstr ""
 
 #: platform/osx/export/export.cpp
@@ -18990,8 +19199,13 @@ msgid "Creating app bundle"
 msgstr ""
 
 #: platform/osx/export/export.cpp
-msgid "Could not find template app to export:"
+msgid "Could not find template app to export: \"%s\"."
 msgstr ""
+
+#: platform/osx/export/export.cpp
+#, fuzzy
+msgid "Invalid export format."
+msgstr "Anim පරිවර්තනය වෙනස් කරන්න"
 
 #: platform/osx/export/export.cpp
 msgid ""
@@ -19001,7 +19215,7 @@ msgstr ""
 
 #: platform/osx/export/export.cpp
 msgid ""
-"Requested template binary '%s' not found. It might be missing from your "
+"Requested template binary \"%s\" not found. It might be missing from your "
 "template archive."
 msgstr ""
 
@@ -19039,6 +19253,15 @@ msgstr ""
 
 #: platform/osx/export/export.cpp
 msgid "Sending archive for notarization"
+msgstr ""
+
+#: platform/osx/export/export.cpp
+#, fuzzy
+msgid "ZIP Creation"
+msgstr "ශ්‍රිත:"
+
+#: platform/osx/export/export.cpp
+msgid "Could not open file to read from path \"%s\"."
 msgstr ""
 
 #: platform/osx/export/export.cpp
@@ -19341,6 +19564,10 @@ msgid "Debug Algorithm"
 msgstr ""
 
 #: platform/windows/export/export.cpp
+msgid "Failed to rename temporary file \"%s\"."
+msgstr ""
+
+#: platform/windows/export/export.cpp
 msgid "Identity Type"
 msgstr ""
 
@@ -19381,6 +19608,61 @@ msgid "Trademarks"
 msgstr ""
 
 #: platform/windows/export/export.cpp
+msgid "Resources Modification"
+msgstr ""
+
+#: platform/windows/export/export.cpp
+msgid "Could not find rcedit executable at \"%s\"."
+msgstr ""
+
+#: platform/windows/export/export.cpp
+msgid "Could not find wine executable at \"%s\"."
+msgstr ""
+
+#: platform/windows/export/export.cpp
+msgid ""
+"Could not start rcedit executable. Configure rcedit path in the Editor "
+"Settings (Export > Windows > Rcedit), or disable \"Application > Modify "
+"Resources\" in the export preset."
+msgstr ""
+
+#: platform/windows/export/export.cpp
+msgid "rcedit failed to modify executable: %s."
+msgstr ""
+
+#: platform/windows/export/export.cpp
+msgid "Could not find signtool executable at \"%s\"."
+msgstr ""
+
+#: platform/windows/export/export.cpp
+msgid "Could not find osslsigncode executable at \"%s\"."
+msgstr ""
+
+#: platform/windows/export/export.cpp
+#, fuzzy
+msgid "Invalid identity type."
+msgstr "'%s' ගොඩනැගීමට වැරදි තර්ක"
+
+#: platform/windows/export/export.cpp
+msgid "Invalid timestamp server."
+msgstr ""
+
+#: platform/windows/export/export.cpp
+msgid ""
+"Could not start signtool executable. Configure signtool path in the Editor "
+"Settings (Export > Windows > Signtool), or disable \"Codesign\" in the "
+"export preset."
+msgstr ""
+
+#: platform/windows/export/export.cpp
+msgid "Signtool failed to sign executable: %s."
+msgstr ""
+
+#: platform/windows/export/export.cpp
+msgid "Failed to remove temporary file \"%s\"."
+msgstr ""
+
+#: platform/windows/export/export.cpp
 msgid ""
 "The rcedit tool must be configured in the Editor Settings (Export > Windows "
 "> Rcedit) to change the icon or app information data."
@@ -19399,6 +19681,22 @@ msgid "Invalid product version:"
 msgstr ""
 
 #: platform/windows/export/export.cpp
+msgid "Windows executables cannot be >= 4 GiB."
+msgstr ""
+
+#: platform/windows/export/export.cpp platform/x11/export/export.cpp
+msgid "Failed to open executable file \"%s\"."
+msgstr ""
+
+#: platform/windows/export/export.cpp platform/x11/export/export.cpp
+msgid "Executable file header corrupted."
+msgstr ""
+
+#: platform/windows/export/export.cpp platform/x11/export/export.cpp
+msgid "Executable \"pck\" section not found."
+msgstr ""
+
+#: platform/windows/export/export.cpp
 msgid "Windows"
 msgstr ""
 
@@ -19412,6 +19710,10 @@ msgstr ""
 
 #: platform/windows/export/export.cpp
 msgid "Wine"
+msgstr ""
+
+#: platform/x11/export/export.cpp
+msgid "32-bit executables cannot have embedded data >= 4 GiB."
 msgstr ""
 
 #: scene/2d/animated_sprite.cpp scene/3d/sprite_3d.cpp
@@ -19525,7 +19827,8 @@ msgstr ""
 
 #: scene/2d/audio_stream_player_2d.cpp scene/3d/audio_stream_player_3d.cpp
 #: scene/3d/light.cpp scene/3d/reflection_probe.cpp
-#: scene/3d/visual_instance.cpp scene/resources/material.cpp
+#: scene/3d/visibility_notifier.cpp scene/3d/visual_instance.cpp
+#: scene/resources/material.cpp
 msgid "Max Distance"
 msgstr ""
 
@@ -19571,7 +19874,7 @@ msgstr ""
 msgid "Custom Viewport"
 msgstr ""
 
-#: scene/2d/camera_2d.cpp scene/3d/camera.cpp
+#: scene/2d/camera_2d.cpp scene/3d/camera.cpp scene/3d/interpolated_camera.cpp
 #: scene/animation/animation_player.cpp scene/animation/animation_tree.cpp
 #: scene/animation/animation_tree_player.cpp scene/main/timer.cpp
 msgid "Process Mode"
@@ -20250,9 +20553,38 @@ msgstr ""
 msgid "Edge Connection Margin"
 msgstr "ශ්‍රිත:"
 
+#: scene/2d/navigation_2d.cpp
+msgid ""
+"'Navigation2D' node and 'Navigation2D.get_simple_path()' are deprecated and "
+"will be removed in a future version. Use 'Navigation2DServer.map_get_path()' "
+"instead."
+msgstr ""
+
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent.cpp
+msgid "Pathfinding"
+msgstr ""
+
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent.cpp
+msgid "Path Desired Distance"
+msgstr ""
+
 #: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent.cpp
 msgid "Target Desired Distance"
 msgstr ""
+
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent.cpp
+msgid "Path Max Distance"
+msgstr ""
+
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent.cpp
+#, fuzzy
+msgid "Avoidance"
+msgstr "සමතුලිතයි"
+
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent.cpp
+#, fuzzy
+msgid "Avoidance Enabled"
+msgstr "මෙම ලුහුබදින්නා ඉවත් කරන්න."
 
 #: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent.cpp
 msgid "Neighbor Dist"
@@ -20269,15 +20601,6 @@ msgstr ""
 #: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent.cpp
 msgid "Max Speed"
 msgstr ""
-
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent.cpp
-msgid "Path Max Distance"
-msgstr ""
-
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent.cpp
-#, fuzzy
-msgid "Avoidance Enabled"
-msgstr "මෙම ලුහුබදින්නා ඉවත් කරන්න."
 
 #: scene/2d/navigation_agent_2d.cpp
 msgid ""
@@ -20301,13 +20624,16 @@ msgid ""
 msgstr ""
 
 #: scene/2d/navigation_polygon.cpp
-msgid ""
-"NavigationPolygonInstance must be a child or grandchild to a Navigation2D "
-"node. It only provides navigation data."
+msgid "Navpoly"
 msgstr ""
 
-#: scene/2d/navigation_polygon.cpp
-msgid "Navpoly"
+#: scene/2d/navigation_polygon.cpp scene/3d/navigation_mesh_instance.cpp
+#, fuzzy
+msgid "Enter Cost"
+msgstr "යතුරු මකා දමන්න"
+
+#: scene/2d/navigation_polygon.cpp scene/3d/navigation_mesh_instance.cpp
+msgid "Travel Cost"
 msgstr ""
 
 #: scene/2d/node_2d.cpp scene/2d/polygon_2d.cpp scene/3d/spatial.cpp
@@ -20315,7 +20641,7 @@ msgstr ""
 msgid "Rotation Degrees"
 msgstr ""
 
-#: scene/2d/node_2d.cpp
+#: scene/2d/node_2d.cpp scene/3d/spatial.cpp
 msgid "Global Rotation"
 msgstr ""
 
@@ -21378,6 +21704,13 @@ msgstr ""
 msgid "Transform Normals"
 msgstr "3D රූපාන්තරණය ලුහුබදින්න"
 
+#: scene/3d/navigation.cpp
+msgid ""
+"'Navigation' node and 'Navigation.get_simple_path()' are deprecated and will "
+"be removed in a future version. Use 'NavigationServer.map_get_path()' "
+"instead."
+msgstr ""
+
 #: scene/3d/navigation.cpp scene/resources/curve.cpp
 msgid "Up Vector"
 msgstr ""
@@ -21397,12 +21730,6 @@ msgstr ""
 #: scene/3d/navigation_agent.cpp
 msgid ""
 "The NavigationAgent can be used only under a Spatial inheriting parent node."
-msgstr ""
-
-#: scene/3d/navigation_mesh_instance.cpp
-msgid ""
-"NavigationMeshInstance must be a child or grandchild to a Navigation node. "
-"It only provides navigation data."
 msgstr ""
 
 #: scene/3d/navigation_mesh_instance.cpp scene/resources/mesh_library.cpp
@@ -22223,6 +22550,11 @@ msgid ""
 "running.\n"
 "Change the size in children collision shapes instead."
 msgstr ""
+
+#: scene/3d/spatial.cpp
+#, fuzzy
+msgid "Global Translation"
+msgstr "Anim පරිවර්තනය වෙනස් කරන්න"
 
 #: scene/3d/spatial.cpp
 msgid "Matrix"
@@ -23339,6 +23671,10 @@ msgid "Fold Gutter"
 msgstr ""
 
 #: scene/gui/text_edit.cpp
+msgid "Drag And Drop Selection Enabled"
+msgstr ""
+
+#: scene/gui/text_edit.cpp
 msgid "Hiding Enabled"
 msgstr ""
 
@@ -23709,16 +24045,17 @@ msgstr ""
 
 #: scene/main/viewport.cpp
 msgid ""
-"This viewport is not set as render target. If you intend for it to display "
-"its contents directly to the screen, make it a child of a Control so it can "
-"obtain a size. Otherwise, make it a RenderTarget and assign its internal "
-"texture to some node for display."
+"The Viewport size must be greater than or equal to 2 pixels on both "
+"dimensions to render anything."
 msgstr ""
 
 #: scene/main/viewport.cpp
 msgid ""
-"The Viewport size must be greater than or equal to 2 pixels on both "
-"dimensions to render anything."
+"This Viewport has HDR enabled, but its Usage is set to 2D or 2D No-"
+"Sampling.\n"
+"HDR is only supported in Viewports that have their Usage set to 3D or 3D No-"
+"Effects.\n"
+"HDR will be disabled for this Viewport."
 msgstr ""
 
 #: scene/main/viewport.cpp
@@ -23861,6 +24198,16 @@ msgstr ""
 #: scene/register_scene_types.cpp
 msgid "3D Physics"
 msgstr ""
+
+#: scene/register_scene_types.cpp
+#, fuzzy
+msgid "2D Navigation"
+msgstr "නිවේශන මාදිලිය"
+
+#: scene/register_scene_types.cpp
+#, fuzzy
+msgid "3D Navigation"
+msgstr "නිවේශන මාදිලිය"
 
 #: scene/register_scene_types.cpp
 msgid "Use hiDPI"
@@ -25181,7 +25528,7 @@ msgstr "Anim සංක්රමණය වෙනස් කරන්න"
 msgid "Refraction"
 msgstr ""
 
-#: scene/resources/material.cpp scene/resources/navigation_mesh.cpp
+#: scene/resources/material.cpp
 msgid "Detail"
 msgstr ""
 
@@ -25260,8 +25607,13 @@ msgid "Visible Instance Count"
 msgstr ""
 
 #: scene/resources/navigation_mesh.cpp
-msgid "Sample Partition Type"
+msgid "Sampling"
 msgstr ""
+
+#: scene/resources/navigation_mesh.cpp
+#, fuzzy
+msgid "Partition Type"
+msgstr "ශ්‍රිත:"
 
 #: scene/resources/navigation_mesh.cpp
 msgid "Parsed Geometry Type"
@@ -25276,7 +25628,11 @@ msgid "Source Group Name"
 msgstr ""
 
 #: scene/resources/navigation_mesh.cpp
-msgid "Agent"
+msgid "Cells"
+msgstr ""
+
+#: scene/resources/navigation_mesh.cpp
+msgid "Agents"
 msgstr ""
 
 #: scene/resources/navigation_mesh.cpp
@@ -25288,11 +25644,16 @@ msgid "Max Slope"
 msgstr ""
 
 #: scene/resources/navigation_mesh.cpp
+#, fuzzy
+msgid "Regions"
+msgstr "නිවේශන මාදිලිය"
+
+#: scene/resources/navigation_mesh.cpp
 msgid "Merge Size"
 msgstr ""
 
 #: scene/resources/navigation_mesh.cpp
-msgid "Edge"
+msgid "Edges"
 msgstr ""
 
 #: scene/resources/navigation_mesh.cpp
@@ -25302,6 +25663,10 @@ msgstr "කැඩපත"
 
 #: scene/resources/navigation_mesh.cpp
 msgid "Verts Per Poly"
+msgstr ""
+
+#: scene/resources/navigation_mesh.cpp
+msgid "Details"
 msgstr ""
 
 #: scene/resources/navigation_mesh.cpp
@@ -25321,7 +25686,15 @@ msgid "Ledge Spans"
 msgstr ""
 
 #: scene/resources/navigation_mesh.cpp
-msgid "Filter Walkable Low Height Spans"
+msgid "Walkable Low Height Spans"
+msgstr ""
+
+#: scene/resources/navigation_mesh.cpp
+msgid "Baking AABB"
+msgstr ""
+
+#: scene/resources/navigation_mesh.cpp
+msgid "Baking AABB Offset"
 msgstr ""
 
 #: scene/resources/occluder_shape.cpp
@@ -25701,6 +26074,11 @@ msgid "Scenario"
 msgstr ""
 
 #: scene/resources/world.cpp scene/resources/world_2d.cpp
+#, fuzzy
+msgid "Navigation Map"
+msgstr "නිවේශන මාදිලිය"
+
+#: scene/resources/world.cpp scene/resources/world_2d.cpp
 msgid "Direct Space State"
 msgstr ""
 
@@ -25716,6 +26094,26 @@ msgstr "රේඛීය"
 #: scene/resources/world.cpp scene/resources/world_2d.cpp
 msgid "Default Angular Damp"
 msgstr ""
+
+#: scene/resources/world.cpp
+#, fuzzy
+msgid "Default Map Up"
+msgstr "වටිනාකම:"
+
+#: scene/resources/world.cpp scene/resources/world_2d.cpp
+#, fuzzy
+msgid "Default Cell Size"
+msgstr "වටිනාකම:"
+
+#: scene/resources/world.cpp scene/resources/world_2d.cpp
+#, fuzzy
+msgid "Default Cell Height"
+msgstr "වටිනාකම:"
+
+#: scene/resources/world.cpp scene/resources/world_2d.cpp
+#, fuzzy
+msgid "Default Edge Connection Margin"
+msgstr "ශ්‍රිත:"
 
 #: scene/resources/world_2d.cpp
 msgid "Canvas"

@@ -411,7 +411,10 @@ Error Main::setup(const char *execpath, int argc, char *argv[], bool p_second_ph
 	ClassDB::register_class<Performance>();
 	engine->add_singleton(Engine::Singleton("Performance", performance));
 
-	GLOBAL_DEF("debug/settings/crash_handler/message", String("Please include this when reporting the bug on https://github.com/godotengine/godot/issues"));
+	GLOBAL_DEF("debug/settings/crash_handler/message",
+			String("Please include this when reporting the bug to the project developer."));
+	GLOBAL_DEF("debug/settings/crash_handler/message.editor",
+			String("Please include this when reporting the bug on: https://github.com/godotengine/godot/issues"));
 
 	MAIN_PRINT("Main: Parse CMDLine");
 
@@ -475,6 +478,9 @@ Error Main::setup(const char *execpath, int argc, char *argv[], bool p_second_ph
 	packed_data->add_pack_source(zip_packed_data);
 #endif
 
+	// Default exit code, can be modified for certain errors.
+	Error exit_code = ERR_INVALID_PARAMETER;
+
 	I = args.front();
 	while (I) {
 #ifdef OSX_ENABLED
@@ -491,10 +497,12 @@ Error Main::setup(const char *execpath, int argc, char *argv[], bool p_second_ph
 		if (I->get() == "-h" || I->get() == "--help" || I->get() == "/?") { // display help
 
 			show_help = true;
+			exit_code = ERR_HELP; // Hack to force an early exit in `main()` with a success code.
 			goto error;
 
 		} else if (I->get() == "--version") {
 			print_line(get_full_version_string());
+			exit_code = ERR_HELP; // Hack to force an early exit in `main()` with a success code.
 			goto error;
 
 		} else if (I->get() == "-v" || I->get() == "--verbose") { // verbose output
@@ -1249,7 +1257,11 @@ Error Main::setup(const char *execpath, int argc, char *argv[], bool p_second_ph
 	}
 
 	GLOBAL_DEF("display/window/ios/hide_home_indicator", true);
-	GLOBAL_DEF("input_devices/pointing/ios/touch_delay", 0.150);
+	GLOBAL_DEF("input_devices/pointing/ios/touch_delay", 0.15);
+	ProjectSettings::get_singleton()->set_custom_property_info("input_devices/pointing/ios/touch_delay",
+			PropertyInfo(Variant::REAL,
+					"input_devices/pointing/ios/touch_delay",
+					PROPERTY_HINT_RANGE, "0,1,0.001"));
 
 	Engine::get_singleton()->set_frame_delay(frame_delay);
 
@@ -1321,7 +1333,7 @@ error:
 	OS::get_singleton()->finalize_core();
 	locale = String();
 
-	return ERR_INVALID_PARAMETER;
+	return exit_code;
 }
 
 Error Main::setup2(Thread::ID p_main_tid_override) {
