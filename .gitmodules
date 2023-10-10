@@ -1,0 +1,3 @@
+[submodule "modules/qurobullet"]
+	path = modules/qurobullet
+	url = git@github.com:quinnvoker/qurobullet.git
