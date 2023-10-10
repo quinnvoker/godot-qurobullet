@@ -17,6 +17,8 @@ jobs:
     name: "Build and test Godot CPP"
     steps:
       - uses: actions/checkout@v3
+        with:
+          submodules: recursive
 
       - name: Setup python and scons
         uses: ./.github/actions/godot-deps
@@ -27,15 +29,15 @@ jobs:
         with:
           repository: godotengine/godot-cpp
           ref: ${{ env.GODOT_BASE_BRANCH }}
-          submodules: 'recursive'
-          path: 'godot-cpp'
+          submodules: "recursive"
+          path: "godot-cpp"
 
       # Download generated API dump
       - name: Download GDExtension interface and API dump
         uses: ./.github/actions/download-artifact
         with:
-          name: 'godot-api-dump'
-          path: './godot-api'
+          name: "godot-api-dump"
+          path: "./godot-api"
 
       # Extract and override existing files with generated files
       - name: Extract GDExtension interface and API dump
