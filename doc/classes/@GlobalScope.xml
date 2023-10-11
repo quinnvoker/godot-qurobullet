@@ -1453,6 +1453,9 @@
 		<member name="AudioServer" type="AudioServer" setter="" getter="">
 			The [AudioServer] singleton.
 		</member>
+		<member name="BulletServerRelay" type="BulletServerRelay" setter="" getter="">
+			The [BulletServerRelay] singleton, from the qurobullet module.
+		</member>
 		<member name="CameraServer" type="CameraServer" setter="" getter="">
 			The [CameraServer] singleton.
 		</member>
